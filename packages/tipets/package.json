@@ -1,0 +1,19 @@
+{
+  "name": "tipets",
+  "description": "Typescript-first schema declaration and validation library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hernantas/tipets.git",
+    "directory": "packages/tipets"
+  },
+  "author": "Zulfikar Raditya Hernanta <hernantas@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "runtime",
+    "schema",
+    "type",
+    "validate",
+    "validation"
+  ]
+}
