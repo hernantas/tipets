@@ -17,7 +17,8 @@ export abstract class Schema<T, D extends Definition = Definition>
   }
 
   /**
-   * Type guard for current type `T`
+   * Narrowing down given value into current schema type `T`, can be used for
+   * type guard
    *
    * @param value Value to be checked
    */
