@@ -15,7 +15,10 @@ export class ArraySchema<S extends Schema> extends Schema<
   public override is(value: unknown): value is TypeOf<S>[] {
     return (
       Array.isArray(value) &&
-      value.filter((value) => this.type.is(value)).length === value.length
+      value.reduce(
+        (result, value) => (result ? this.type.is(value) : false),
+        true
+      )
     )
   }
 
