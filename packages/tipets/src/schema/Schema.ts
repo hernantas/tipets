@@ -5,7 +5,7 @@ import { Type } from '../type/Type'
 import { Definition } from './definition/Definition'
 import { ValidationRule } from './validation/ValidationRule'
 
-export abstract class Schema<T, D extends Definition = Definition>
+export abstract class Schema<T = unknown, D extends Definition = Definition>
   extends ImmutableBuilder<D>
   implements Type<T>
 {
