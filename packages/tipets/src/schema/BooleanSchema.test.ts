@@ -1,6 +1,6 @@
 import { boolean } from './builder/boolean'
 
-describe('String Schema', () => {
+describe('Boolean Schema', () => {
   const schema = boolean()
 
   it('Is', () => {
