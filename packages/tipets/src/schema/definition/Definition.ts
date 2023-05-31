@@ -1,5 +1,5 @@
 import { Key } from '../../alias/Key'
-import { ValidationRule } from '../ValidationRule'
+import { ValidationRule } from '../validation/ValidationRule'
 
 /** Schema definition */
 export interface Definition {
