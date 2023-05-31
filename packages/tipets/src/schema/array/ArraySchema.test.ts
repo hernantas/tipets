@@ -4,7 +4,7 @@ import { array } from './array'
 describe('Array Schema', () => {
   const schema = array(string())
 
-  it('Is', () => {
+  it('Type Guard', () => {
     expect(schema.is([])).toBe(true)
     expect(schema.is(['ROBOT'])).toBe(true)
     expect(schema.is(['false'])).toBe(true)

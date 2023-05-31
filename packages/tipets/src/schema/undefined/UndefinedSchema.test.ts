@@ -3,7 +3,7 @@ import { _undefined } from './undefined'
 describe('Undefined Schema', () => {
   const schema = _undefined()
 
-  it('Is', () => {
+  it('Type Guard', () => {
     expect(schema.is(undefined)).toBe(true)
     expect(schema.is(true)).toBe(false)
     expect(schema.is(false)).toBe(false)

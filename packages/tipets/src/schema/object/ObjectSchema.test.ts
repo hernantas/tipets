@@ -8,7 +8,7 @@ describe('Object Schema', () => {
     _number: number().min(0),
   })
 
-  it('Is', () => {
+  it('Type Guard', () => {
     expect(
       schema.is({
         _string: 'Hello',

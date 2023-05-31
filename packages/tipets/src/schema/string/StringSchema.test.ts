@@ -3,7 +3,7 @@ import { string } from './string'
 describe('String Schema', () => {
   const schema = string()
 
-  it('Is', () => {
+  it('Type Guard', () => {
     expect(schema.is('Hello World')).toBe(true)
     expect(schema.is('0')).toBe(true)
     expect(schema.is('false')).toBe(true)

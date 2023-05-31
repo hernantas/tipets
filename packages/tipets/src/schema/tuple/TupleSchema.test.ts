@@ -4,7 +4,7 @@ import { tuple } from './tuple'
 describe('Tuple Schema', () => {
   const schema = tuple(string().length(4), string().length(6))
 
-  it('Is', () => {
+  it('Type Guard', () => {
     expect(schema.is(['Hello', 'World'])).toBe(true)
     expect(schema.is(['Hello', 'World', '!!!'])).toBe(false)
     expect(schema.is(['Hello'])).toBe(false)

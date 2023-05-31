@@ -3,7 +3,7 @@ import { number } from './number'
 describe('Number Schema', () => {
   const schema = number()
 
-  it('Is', () => {
+  it('Type Guard', () => {
     expect(schema.is(0)).toBe(true)
     expect(schema.is(255)).toBe(true)
     expect(schema.is(-255)).toBe(true)

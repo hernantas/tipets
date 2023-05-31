@@ -3,7 +3,7 @@ import { unknown } from './unknown'
 describe('Unknown Schema', () => {
   const schema = unknown()
 
-  it('Is', () => {
+  it('Type Guard', () => {
     expect(schema.is(true)).toBe(true)
     expect(schema.is(false)).toBe(true)
     expect(schema.is(0)).toBe(true)

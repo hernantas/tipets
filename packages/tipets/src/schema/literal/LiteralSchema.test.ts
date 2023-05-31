@@ -1,7 +1,7 @@
 import { literal } from './literal'
 
 describe('Literal Schema', () => {
-  it('Is (String)', () => {
+  it('Type Guard (String)', () => {
     const schema = literal('true')
     expect(schema.is('true')).toBe(true)
     expect(schema.is('false')).toBe(false)
@@ -11,7 +11,7 @@ describe('Literal Schema', () => {
     expect(schema.is(1)).toBe(false)
   })
 
-  it('Is (Number)', () => {
+  it('Type Guard (Number)', () => {
     const schema = literal(0)
     expect(schema.is(0)).toBe(true)
     expect(schema.is(1)).toBe(false)
@@ -21,7 +21,7 @@ describe('Literal Schema', () => {
     expect(schema.is(false)).toBe(false)
   })
 
-  it('Is (Boolean)', () => {
+  it('Type Guard (Boolean)', () => {
     const schema = literal(true)
     expect(schema.is(true)).toBe(true)
     expect(schema.is(false)).toBe(false)

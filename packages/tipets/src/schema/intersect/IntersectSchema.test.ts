@@ -9,7 +9,7 @@ describe('Intersect Schema', () => {
     object({ _number: number().min(0) })
   )
 
-  it('Is', () => {
+  it('Type Guard', () => {
     expect(schema.is({ _string: 'Hello', _number: 0 })).toBe(true)
     expect(schema.is({ _string: 'Hello' })).toBe(false)
     expect(schema.is({ _number: 0 })).toBe(false)

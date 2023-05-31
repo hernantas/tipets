@@ -3,7 +3,7 @@ import { _null } from './null'
 describe('Null Schema', () => {
   const schema = _null()
 
-  it('Is', () => {
+  it('Type Guard', () => {
     expect(schema.is(null)).toBe(true)
     expect(schema.is(true)).toBe(false)
     expect(schema.is(false)).toBe(false)

@@ -5,7 +5,7 @@ import { union } from './union'
 describe('Union Schema', () => {
   const schema = union(string().length(5), number().min(100))
 
-  it('Is', () => {
+  it('Type Guard', () => {
     expect(schema.is('Hello')).toBe(true)
     expect(schema.is(0)).toBe(true)
     expect(schema.is(false)).toBe(false)

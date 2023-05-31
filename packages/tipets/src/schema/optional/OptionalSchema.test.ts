@@ -4,7 +4,7 @@ import { optional } from './optional'
 describe('Optional Schema', () => {
   const schema = optional(string().length(5).min(5))
 
-  it('Is', () => {
+  it('Type Guard', () => {
     expect(schema.is('Hello')).toBe(true)
     expect(schema.is(undefined)).toBe(true)
     expect(schema.is(0)).toBe(false)
