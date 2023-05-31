@@ -1,9 +1,9 @@
 import { ImmutableBuilder } from '../ImmutableBuilder'
+import { Type } from '../Type'
 import { Violation } from '../Violation'
-import { typeSymbol } from '../symbol/typeSymbol'
-import { Type } from '../type/Type'
-import { Definition } from './definition/Definition'
-import { ValidationRule } from './validation/ValidationRule'
+import { typeSymbol } from '../typeSymbol'
+import { Definition } from './Definition'
+import { ValidationRule } from './ValidationRule'
 
 export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>
   extends ImmutableBuilder<D>

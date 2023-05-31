@@ -1,6 +1,6 @@
 import { ConstructorType } from './alias/ConstructorType'
 import { ObjectType } from './alias/ObjectType'
-import { definitionSymbol } from './symbol/definitionSymbol'
+import { definitionSymbol } from './definitionSymbol'
 
 /**
  * Utility class that can build or modify definition object `<T>` in immutable
