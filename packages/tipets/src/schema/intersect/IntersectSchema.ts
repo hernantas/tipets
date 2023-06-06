@@ -35,6 +35,21 @@ export class IntersectSchema<T extends MemberSchemaType> extends Schema<
     return Signature.create('Intersect', ...items.map((item) => item.signature))
   }
 
+  /**
+   * Create new instance of {@link IntersectSchema}
+   *
+   * @param items Member type schema
+   * @returns A new instance of {@link IntersectSchema}
+   */
+  public static create<T extends MemberSchemaType>(
+    ...items: T
+  ): IntersectSchema<T> {
+    return new IntersectSchema({
+      signature: IntersectSchema.signature(items),
+      items,
+    })
+  }
+
   public get items(): T {
     return this.get('items')
   }

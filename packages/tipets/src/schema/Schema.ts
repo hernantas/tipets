@@ -26,6 +26,10 @@ export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>
     return value instanceof Schema
   }
 
+  protected constructor(definition: D) {
+    super(definition)
+  }
+
   /** Get current schema signature */
   public get signature(): Signature {
     return this.get('signature')

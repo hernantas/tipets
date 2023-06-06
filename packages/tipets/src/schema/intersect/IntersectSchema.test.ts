@@ -5,7 +5,7 @@ import { IntersectSchema } from './IntersectSchema'
 import { intersect } from './intersect'
 
 describe('Intersect Schema', () => {
-  const schema = intersect(
+  const schema = IntersectSchema.create(
     object({ _string: string().length(5) }),
     object({ _number: number().min(0) })
   )

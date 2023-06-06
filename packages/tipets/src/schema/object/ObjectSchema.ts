@@ -36,6 +36,21 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
     )
   }
 
+  /**
+   * Create new instance of {@link ObjectSchema}
+   *
+   * @param properties Properties of object schema
+   * @returns A new instance of {@link ObjectSchema}
+   */
+  public static create<T extends ObjectSchemaType>(
+    properties: T
+  ): ObjectSchema<T> {
+    return new ObjectSchema({
+      signature: ObjectSchema.signature(properties),
+      properties,
+    })
+  }
+
   /** Get list of keys of schema */
   public get keys(): string[] {
     return Object.keys(this.properties)

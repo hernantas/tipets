@@ -1,8 +1,7 @@
 import { AnySchema } from './AnySchema'
-import { any } from './any'
 
 describe('Any Schema', () => {
-  const schema = any()
+  const schema = AnySchema.create()
 
   it('Type Guard', () => {
     expect(schema.is(true)).toBe(true)

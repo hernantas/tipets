@@ -1,10 +1,9 @@
 import { number } from '../number/number'
 import { string } from '../string/string'
 import { UnionSchema } from './UnionSchema'
-import { union } from './union'
 
 describe('Union Schema', () => {
-  const schema = union(string().length(5), number().min(100))
+  const schema = UnionSchema.create(string().length(5), number().min(100))
 
   it('Type Guard', () => {
     expect(schema.is('Hello')).toBe(true)

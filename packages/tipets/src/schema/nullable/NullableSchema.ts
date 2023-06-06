@@ -33,6 +33,19 @@ export class NullableSchema<T extends Schema> extends Schema<
     return Signature.create('Nullable', schema.signature)
   }
 
+  /**
+   * Create new instance of {@link NullableSchema}
+   *
+   * @param type Inner schema type
+   * @returns A new instance of {@link NullableSchema}
+   */
+  public static create<T extends Schema>(type: T): NullableSchema<T> {
+    return new NullableSchema({
+      signature: NullableSchema.signature(type),
+      type,
+    })
+  }
+
   public get type(): T {
     return this.get('type')
   }

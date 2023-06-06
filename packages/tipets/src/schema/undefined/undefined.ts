@@ -1,6 +1,10 @@
 import { UndefinedSchema } from './UndefinedSchema'
 
-const instance = new UndefinedSchema({ signature: UndefinedSchema.signature() })
+/**
+ * Create new instance of {@link UndefinedSchema}
+ *
+ * @returns A new instance of {@link UndefinedSchema}
+ */
 export function _undefined(): UndefinedSchema {
-  return instance
+  return UndefinedSchema.create()
 }

@@ -5,6 +5,10 @@ import { kindSymbol } from '../kindSymbol'
 export class AnySchema extends Schema<any> {
   public static readonly [kindSymbol]: string = 'any'
 
+  private static readonly instance: AnySchema = new AnySchema({
+    signature: AnySchema.signature(),
+  })
+
   public override readonly [kindSymbol]: string = AnySchema[kindSymbol]
 
   /**
@@ -24,6 +28,15 @@ export class AnySchema extends Schema<any> {
    */
   public static signature(): Signature {
     return Signature.create('Any')
+  }
+
+  /**
+   * Create new instance of {@link AnySchema}
+   *
+   * @returns A new instance of {@link AnySchema}
+   */
+  public static create(): AnySchema {
+    return AnySchema.instance
   }
 
   public override is(_value: unknown): _value is any {

@@ -5,6 +5,10 @@ import { kindSymbol } from '../kindSymbol'
 export class BooleanSchema extends Schema<boolean> {
   public static readonly [kindSymbol]: string = 'boolean'
 
+  private static readonly instance: BooleanSchema = new BooleanSchema({
+    signature: BooleanSchema.signature(),
+  })
+
   public override readonly [kindSymbol]: string = BooleanSchema[kindSymbol]
 
   /**
@@ -25,6 +29,15 @@ export class BooleanSchema extends Schema<boolean> {
    */
   public static signature(): Signature {
     return Signature.create('Boolean')
+  }
+
+  /**
+   * Create new instance of {@link BooleanSchema}
+   *
+   * @returns A new instance of {@link BooleanSchema}
+   */
+  public static create(): BooleanSchema {
+    return BooleanSchema.instance
   }
 
   public override is(value: unknown): value is boolean {

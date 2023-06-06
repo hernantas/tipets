@@ -1,8 +1,7 @@
 import { NumberSchema } from './NumberSchema'
-import { number } from './number'
 
 describe('Number Schema', () => {
-  const schema = number()
+  const schema = NumberSchema.create()
 
   it('Type Guard', () => {
     expect(schema.is(0)).toBe(true)

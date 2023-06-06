@@ -1,6 +1,10 @@
 import { NullSchema } from './NullSchema'
 
-const instance = new NullSchema({ signature: NullSchema.signature() })
+/**
+ * Create new instance of {@link NullSchema}
+ *
+ * @returns A new instance of {@link NullSchema}
+ */
 export function _null(): NullSchema {
-  return instance
+  return NullSchema.create()
 }

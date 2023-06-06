@@ -34,6 +34,18 @@ export class UnionSchema<T extends MemberSchemaType> extends Schema<
     return Signature.create('Union', ...items.map((item) => item.signature))
   }
 
+  /**
+   * Create new instance of {@link UnionSchema}
+   *
+   * @param items Member schema
+   * @returns A new instance of {@link UnionSchema}
+   */
+  public static create<T extends MemberSchemaType>(
+    ...items: T
+  ): UnionSchema<T> {
+    return new UnionSchema({ signature: UnionSchema.signature(items), items })
+  }
+
   public get items(): T {
     return this.get('items')
   }

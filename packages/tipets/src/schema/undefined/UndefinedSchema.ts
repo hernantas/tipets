@@ -5,6 +5,10 @@ import { kindSymbol } from '../kindSymbol'
 export class UndefinedSchema extends Schema<undefined> {
   public static readonly [kindSymbol]: string = 'undefined'
 
+  private static readonly instance: UndefinedSchema = new UndefinedSchema({
+    signature: UndefinedSchema.signature(),
+  })
+
   public override readonly [kindSymbol]: string = UndefinedSchema[kindSymbol]
 
   /**
@@ -25,6 +29,15 @@ export class UndefinedSchema extends Schema<undefined> {
    */
   public static signature(): Signature {
     return Signature.create('Undefined')
+  }
+
+  /**
+   * Create new instance of {@link UndefinedSchema}
+   *
+   * @returns A new instance of {@link UndefinedSchema}
+   */
+  public static create(): UndefinedSchema {
+    return UndefinedSchema.instance
   }
 
   public override is(value: unknown): value is undefined {

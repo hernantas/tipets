@@ -1,10 +1,9 @@
 import { number } from '../number/number'
 import { string } from '../string/string'
 import { ObjectSchema } from './ObjectSchema'
-import { object } from './object'
 
 describe('Object Schema', () => {
-  const schema = object({
+  const schema = ObjectSchema.create({
     _string: string().length(5),
     _number: number().min(0),
   })

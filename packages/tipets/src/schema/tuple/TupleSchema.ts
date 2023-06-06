@@ -33,6 +33,16 @@ export class TupleSchema<T extends TupleSchemaType> extends Schema<
     return Signature.create('Tuple', ...items.map((item) => item.signature))
   }
 
+  /**
+   * Create new instance of {@link TupleSchema}
+   *
+   * @param items Member schemas
+   * @returns A new instance of {@link TupleSchema}
+   */
+  public static create<T extends TupleSchemaType>(...items: T): TupleSchema<T> {
+    return new TupleSchema({ signature: TupleSchema.signature(items), items })
+  }
+
   public get items(): T {
     return this.get('items')
   }

@@ -1,6 +1,10 @@
 import { DateSchema } from './DateSchema'
 
-const instance = new DateSchema({ signature: DateSchema.signature() })
+/**
+ * Create new instance of {@link DateSchema}
+ *
+ * @returns A new instance of {@link DateSchema}
+ */
 export function date(): DateSchema {
-  return instance
+  return DateSchema.create()
 }

@@ -1,9 +1,8 @@
 import { string } from '../string/string'
 import { NullableSchema } from './NullableSchema'
-import { nullable } from './nullable'
 
 describe('Nullable Schema', () => {
-  const schema = nullable(string().length(5).min(5))
+  const schema = NullableSchema.create(string().length(5).min(5))
 
   it('Type Guard', () => {
     expect(schema.is('Hello')).toBe(true)

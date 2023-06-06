@@ -1,8 +1,7 @@
 import { UndefinedSchema } from './UndefinedSchema'
-import { _undefined } from './undefined'
 
 describe('Undefined Schema', () => {
-  const schema = _undefined()
+  const schema = UndefinedSchema.create()
 
   it('Type Guard', () => {
     expect(schema.is(undefined)).toBe(true)

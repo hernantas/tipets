@@ -1,6 +1,10 @@
 import { AnySchema } from './AnySchema'
 
-const instance = new AnySchema({ signature: AnySchema.signature() })
+/**
+ * Create new instance of {@link AnySchema}
+ *
+ * @returns A new instance of {@link AnySchema}
+ */
 export function any(): AnySchema {
-  return instance
+  return AnySchema.create()
 }

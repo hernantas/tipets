@@ -5,6 +5,10 @@ import { kindSymbol } from '../kindSymbol'
 export class NumberSchema extends Schema<number> {
   public static readonly [kindSymbol]: string = 'number'
 
+  private static readonly instance: NumberSchema = new NumberSchema({
+    signature: NumberSchema.signature(),
+  })
+
   public override readonly [kindSymbol]: string = NumberSchema[kindSymbol]
 
   /**
@@ -24,6 +28,15 @@ export class NumberSchema extends Schema<number> {
    */
   public static signature(): Signature {
     return Signature.create('Number')
+  }
+
+  /**
+   * Create new instance of {@link NumberSchema}
+   *
+   * @returns A new instance of {@link NumberSchema}
+   */
+  public static create(): NumberSchema {
+    return NumberSchema.instance
   }
 
   public override is(value: unknown): value is number {

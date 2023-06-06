@@ -1,8 +1,7 @@
 import { BooleanSchema } from './BooleanSchema'
-import { boolean } from './boolean'
 
 describe('Boolean Schema', () => {
-  const schema = boolean()
+  const schema = BooleanSchema.create()
 
   it('Type Guard', () => {
     expect(schema.is(true)).toBe(true)

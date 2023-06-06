@@ -33,6 +33,19 @@ export class OptionalSchema<T extends Schema> extends Schema<
     return Signature.create('Optional', type.signature)
   }
 
+  /**
+   * Create new instance of {@link OptionalSchema}
+   *
+   * @param type Inner schema type
+   * @returns A new instance of {@link OptionalSchema}
+   */
+  public static create<T extends Schema>(type: T): OptionalSchema<T> {
+    return new OptionalSchema({
+      signature: OptionalSchema.signature(type),
+      type,
+    })
+  }
+
   public get type(): T {
     return this.get('type')
   }

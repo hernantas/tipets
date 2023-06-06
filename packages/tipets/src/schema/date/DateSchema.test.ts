@@ -1,8 +1,7 @@
 import { DateSchema } from './DateSchema'
-import { date } from './date'
 
 describe('Date Schema', () => {
-  const schema = date()
+  const schema = DateSchema.create()
 
   it('Type Guard', () => {
     expect(schema.is(new Date())).toBe(true)

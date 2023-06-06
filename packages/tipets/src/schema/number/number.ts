@@ -1,6 +1,10 @@
 import { NumberSchema } from './NumberSchema'
 
-const instance = new NumberSchema({ signature: NumberSchema.signature() })
+/**
+ * Create new instance of {@link NumberSchema}
+ *
+ * @returns A new instance of {@link NumberSchema}
+ */
 export function number(): NumberSchema {
-  return instance
+  return NumberSchema.create()
 }

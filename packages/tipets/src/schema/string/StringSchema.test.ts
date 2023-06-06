@@ -1,8 +1,7 @@
 import { StringSchema } from './StringSchema'
-import { string } from './string'
 
 describe('String Schema', () => {
-  const schema = string()
+  const schema = StringSchema.create()
 
   it('Type Guard', () => {
     expect(schema.is('Hello World')).toBe(true)

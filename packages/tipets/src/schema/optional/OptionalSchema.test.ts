@@ -1,9 +1,8 @@
 import { string } from '../string/string'
 import { OptionalSchema } from './OptionalSchema'
-import { optional } from './optional'
 
 describe('Optional Schema', () => {
-  const schema = optional(string().length(5).min(5))
+  const schema = OptionalSchema.create(string().length(5).min(5))
 
   it('Type Guard', () => {
     expect(schema.is('Hello')).toBe(true)

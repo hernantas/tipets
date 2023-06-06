@@ -1,9 +1,8 @@
 import { string } from '../string/string'
 import { TupleSchema } from './TupleSchema'
-import { tuple } from './tuple'
 
 describe('Tuple Schema', () => {
-  const schema = tuple(string().length(4), string().length(6))
+  const schema = TupleSchema.create(string().length(4), string().length(6))
 
   it('Type Guard', () => {
     expect(schema.is(['Hello', 'World'])).toBe(true)

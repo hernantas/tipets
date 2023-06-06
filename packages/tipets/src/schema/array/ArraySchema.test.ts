@@ -1,9 +1,8 @@
 import { string } from '../string/string'
 import { ArraySchema } from './ArraySchema'
-import { array } from './array'
 
 describe('Array Schema', () => {
-  const schema = array(string())
+  const schema = ArraySchema.create(string())
 
   it('Type Guard', () => {
     expect(schema.is([])).toBe(true)

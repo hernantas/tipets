@@ -5,6 +5,10 @@ import { kindSymbol } from '../kindSymbol'
 export class DateSchema extends Schema<Date> {
   public static readonly [kindSymbol]: string = 'date'
 
+  private static readonly instance: DateSchema = new DateSchema({
+    signature: DateSchema.signature(),
+  })
+
   public override readonly [kindSymbol]: string = DateSchema[kindSymbol]
 
   /**
@@ -24,6 +28,15 @@ export class DateSchema extends Schema<Date> {
    */
   public static signature(): Signature {
     return Signature.create('Date')
+  }
+
+  /**
+   * Create new instance of {@link DateSchema}
+   *
+   * @returns A new instance of {@link DateSchema}
+   */
+  public static create(): DateSchema {
+    return DateSchema.instance
   }
 
   public override is(value: unknown): value is Date {

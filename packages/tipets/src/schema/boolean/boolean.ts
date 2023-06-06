@@ -1,6 +1,10 @@
 import { BooleanSchema } from './BooleanSchema'
 
-const instance = new BooleanSchema({ signature: BooleanSchema.signature() })
+/**
+ * Create new instance of {@link BooleanSchema}
+ *
+ * @returns A new instance of {@link BooleanSchema}
+ */
 export function boolean(): BooleanSchema {
-  return instance
+  return BooleanSchema.create()
 }

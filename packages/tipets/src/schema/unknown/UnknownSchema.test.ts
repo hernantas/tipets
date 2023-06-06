@@ -1,8 +1,7 @@
 import { UnknownSchema } from './UnknownSchema'
-import { unknown } from './unknown'
 
 describe('Unknown Schema', () => {
-  const schema = unknown()
+  const schema = UnknownSchema.create()
 
   it('Type Guard', () => {
     expect(schema.is(true)).toBe(true)

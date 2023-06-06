@@ -1,8 +1,7 @@
 import { NullSchema } from './NullSchema'
-import { _null } from './null'
 
 describe('Null Schema', () => {
-  const schema = _null()
+  const schema = NullSchema.create()
 
   it('Type Guard', () => {
     expect(schema.is(null)).toBe(true)

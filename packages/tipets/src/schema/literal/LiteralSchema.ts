@@ -32,6 +32,19 @@ export class LiteralSchema<T extends LiteralType> extends Schema<
     return Signature.create(`'${value.toString()}'`)
   }
 
+  /**
+   * Create new instance of {@link LiteralSchema}
+   *
+   * @param value Literal value of schema
+   * @returns A new instance of {@link LiteralSchema}
+   */
+  public static create<T extends LiteralType>(value: T): LiteralSchema<T> {
+    return new LiteralSchema({
+      signature: LiteralSchema.signature(value),
+      value,
+    })
+  }
+
   public get value(): T {
     return this.get('value')
   }

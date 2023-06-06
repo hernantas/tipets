@@ -32,6 +32,16 @@ export class ArraySchema<S extends Schema> extends Schema<
     return Signature.create('Array', schema.signature)
   }
 
+  /**
+   * Create new instance of {@link ArraySchema}
+   *
+   * @param type Inner type schema
+   * @returns A new instance of {@link ArraySchema}
+   */
+  public static create<S extends Schema>(type: S): ArraySchema<S> {
+    return new ArraySchema({ signature: ArraySchema.signature(type), type })
+  }
+
   /** Get inner schema type */
   public get type(): S {
     return this.get('type')

@@ -1,6 +1,10 @@
 import { StringSchema } from './StringSchema'
 
-const instance = new StringSchema({ signature: StringSchema.signature() })
+/**
+ * Create new instance of {@link StringSchema}
+ *
+ * @returns A new instance of {@link StringSchema}
+ */
 export function string(): StringSchema {
-  return instance
+  return StringSchema.create()
 }
