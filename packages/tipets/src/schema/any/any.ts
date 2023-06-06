@@ -1,7 +1,6 @@
 import { AnySchema } from './AnySchema'
-import { anySignature } from './anySignature'
 
-const instance = new AnySchema({ signature: anySignature() })
+const instance = new AnySchema({ signature: AnySchema.signature() })
 export function any(): AnySchema {
   return instance
 }

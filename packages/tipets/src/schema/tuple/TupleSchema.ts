@@ -1,6 +1,7 @@
 import { TypeMapOf } from '../../TypeMapOf'
 import { Violation } from '../../Violation'
 import { Schema } from '../Schema'
+import { Signature } from '../Signature'
 import { kindSymbol } from '../kindSymbol'
 import { TupleDefinition } from './TupleDefinition'
 import { TupleSchemaType } from './TupleSchemaType'
@@ -21,6 +22,15 @@ export class TupleSchema<T extends TupleSchemaType> extends Schema<
    */
   public static override is(schema: Schema): schema is TupleSchema<any> {
     return schema[kindSymbol] === TupleSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link TupleSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(items: TupleSchemaType): Signature {
+    return Signature.create('Tuple', ...items.map((item) => item.signature))
   }
 
   public get items(): T {

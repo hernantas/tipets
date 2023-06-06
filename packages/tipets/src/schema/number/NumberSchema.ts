@@ -1,4 +1,5 @@
 import { Schema } from '../Schema'
+import { Signature } from '../Signature'
 import { kindSymbol } from '../kindSymbol'
 
 export class NumberSchema extends Schema<number> {
@@ -14,6 +15,15 @@ export class NumberSchema extends Schema<number> {
    */
   public static override is(schema: Schema): schema is NumberSchema {
     return schema[kindSymbol] === NumberSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link NumberSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(): Signature {
+    return Signature.create('Number')
   }
 
   public override is(value: unknown): value is number {

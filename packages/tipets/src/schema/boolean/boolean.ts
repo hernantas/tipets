@@ -1,7 +1,6 @@
 import { BooleanSchema } from './BooleanSchema'
-import { booleanSignature } from './booleanSignature'
 
-const instance = new BooleanSchema({ signature: booleanSignature() })
+const instance = new BooleanSchema({ signature: BooleanSchema.signature() })
 export function boolean(): BooleanSchema {
   return instance
 }

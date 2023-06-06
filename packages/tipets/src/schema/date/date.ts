@@ -1,7 +1,6 @@
 import { DateSchema } from './DateSchema'
-import { dateSignature } from './dateSignature'
 
-const instance = new DateSchema({ signature: dateSignature() })
+const instance = new DateSchema({ signature: DateSchema.signature() })
 export function date(): DateSchema {
   return instance
 }

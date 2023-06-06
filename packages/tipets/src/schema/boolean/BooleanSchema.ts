@@ -1,4 +1,5 @@
 import { Schema } from '../Schema'
+import { Signature } from '../Signature'
 import { kindSymbol } from '../kindSymbol'
 
 export class BooleanSchema extends Schema<boolean> {
@@ -15,6 +16,15 @@ export class BooleanSchema extends Schema<boolean> {
    */
   public static override is(schema: Schema): schema is BooleanSchema {
     return schema[kindSymbol] === BooleanSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link BooleanSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(): Signature {
+    return Signature.create('Boolean')
   }
 
   public override is(value: unknown): value is boolean {

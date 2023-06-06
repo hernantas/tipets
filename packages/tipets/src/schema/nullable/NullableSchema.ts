@@ -1,6 +1,7 @@
 import { TypeOf } from '../../TypeOf'
 import { Violation } from '../../Violation'
 import { Schema } from '../Schema'
+import { Signature } from '../Signature'
 import { kindSymbol } from '../kindSymbol'
 import { NullableDefinition } from './NullableDefinition'
 
@@ -21,6 +22,15 @@ export class NullableSchema<T extends Schema> extends Schema<
    */
   public static override is(schema: Schema): schema is NullableSchema<Schema> {
     return schema[kindSymbol] === NullableSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link NullableSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(schema: Schema): Signature {
+    return Signature.create('Nullable', schema.signature)
   }
 
   public get type(): T {

@@ -1,6 +1,7 @@
 import { TypeMapOf } from '../../TypeMapOf'
 import { Violation } from '../../Violation'
 import { Schema } from '../Schema'
+import { Signature } from '../Signature'
 import { kindSymbol } from '../kindSymbol'
 import { ObjectDefinition } from './ObjectDefinition'
 import { ObjectSchemaType } from './ObjectSchemaType'
@@ -21,6 +22,18 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
    */
   public static override is(schema: Schema): schema is ObjectSchema<any> {
     return schema[kindSymbol] === ObjectSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link ObjectSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(properties: ObjectSchemaType): Signature {
+    return Object.entries(properties).reduce(
+      (result, [key, schema]) => result.property(key, schema.signature),
+      Signature.create('Object')
+    )
   }
 
   /** Get list of keys of schema */

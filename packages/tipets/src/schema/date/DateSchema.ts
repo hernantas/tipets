@@ -1,4 +1,5 @@
 import { Schema } from '../Schema'
+import { Signature } from '../Signature'
 import { kindSymbol } from '../kindSymbol'
 
 export class DateSchema extends Schema<Date> {
@@ -14,6 +15,15 @@ export class DateSchema extends Schema<Date> {
    */
   public static override is(schema: Schema): schema is DateSchema {
     return schema[kindSymbol] === DateSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link DateSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(): Signature {
+    return Signature.create('Date')
   }
 
   public override is(value: unknown): value is Date {

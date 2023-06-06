@@ -1,7 +1,6 @@
 import { NumberSchema } from './NumberSchema'
-import { numberSignature } from './numberSignature'
 
-const instance = new NumberSchema({ signature: numberSignature() })
+const instance = new NumberSchema({ signature: NumberSchema.signature() })
 export function number(): NumberSchema {
   return instance
 }

@@ -1,7 +1,6 @@
 import { StringSchema } from './StringSchema'
-import { stringSignature } from './stringSignature'
 
-const instance = new StringSchema({ signature: stringSignature() })
+const instance = new StringSchema({ signature: StringSchema.signature() })
 export function string(): StringSchema {
   return instance
 }

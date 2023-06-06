@@ -2,6 +2,7 @@ import { TypeMapOf } from '../../TypeMapOf'
 import { Violation } from '../../Violation'
 import { MemberSchemaType } from '../MemberSchemaType'
 import { Schema } from '../Schema'
+import { Signature } from '../Signature'
 import { kindSymbol } from '../kindSymbol'
 import { IntersectDefinition } from './IntersectDefinition'
 import { IntersectMap } from './IntersectMap'
@@ -23,6 +24,15 @@ export class IntersectSchema<T extends MemberSchemaType> extends Schema<
    */
   public static override is(schema: Schema): schema is IntersectSchema<any> {
     return schema[kindSymbol] === IntersectSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link IntersectSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(items: MemberSchemaType): Signature {
+    return Signature.create('Intersect', ...items.map((item) => item.signature))
   }
 
   public get items(): T {

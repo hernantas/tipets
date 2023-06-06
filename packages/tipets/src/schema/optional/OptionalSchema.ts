@@ -1,6 +1,7 @@
 import { TypeOf } from '../../TypeOf'
 import { Violation } from '../../Violation'
 import { Schema } from '../Schema'
+import { Signature } from '../Signature'
 import { kindSymbol } from '../kindSymbol'
 import { OptionalDefinition } from './OptionalDefinition'
 
@@ -21,6 +22,15 @@ export class OptionalSchema<T extends Schema> extends Schema<
    */
   public static override is(schema: Schema): schema is OptionalSchema<Schema> {
     return schema[kindSymbol] === OptionalSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link OptionalSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(type: Schema): Signature {
+    return Signature.create('Optional', type.signature)
   }
 
   public get type(): T {

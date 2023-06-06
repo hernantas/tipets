@@ -1,5 +1,6 @@
 import { LiteralType } from '../../alias/LiteralType'
 import { Schema } from '../Schema'
+import { Signature } from '../Signature'
 import { kindSymbol } from '../kindSymbol'
 import { LiteralDefinition } from './LiteralDefinition'
 
@@ -20,6 +21,15 @@ export class LiteralSchema<T extends LiteralType> extends Schema<
    */
   public static override is(schema: Schema): schema is LiteralSchema<any> {
     return schema[kindSymbol] === LiteralSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link LiteralSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(value: LiteralType): Signature {
+    return Signature.create(`'${value.toString()}'`)
   }
 
   public get value(): T {

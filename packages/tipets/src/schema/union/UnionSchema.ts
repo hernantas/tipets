@@ -2,6 +2,7 @@ import { TypeMapOf } from '../../TypeMapOf'
 import { Violation } from '../../Violation'
 import { MemberSchemaType } from '../MemberSchemaType'
 import { Schema } from '../Schema'
+import { Signature } from '../Signature'
 import { kindSymbol } from '../kindSymbol'
 import { UnionDefinition } from './UnionDefinition'
 import { UnionMap } from './UnionMap'
@@ -22,6 +23,15 @@ export class UnionSchema<T extends MemberSchemaType> extends Schema<
    */
   public static override is(schema: Schema): schema is UnionSchema<any> {
     return schema[kindSymbol] === UnionSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link UnionSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(items: MemberSchemaType): Signature {
+    return Signature.create('Union', ...items.map((item) => item.signature))
   }
 
   public get items(): T {

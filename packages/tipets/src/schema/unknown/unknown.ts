@@ -1,7 +1,6 @@
 import { UnknownSchema } from './UnknownSchema'
-import { unknownSignature } from './unknownSignature'
 
-const instance = new UnknownSchema({ signature: unknownSignature() })
+const instance = new UnknownSchema({ signature: UnknownSchema.signature() })
 export function unknown(): UnknownSchema {
   return instance
 }

@@ -1,6 +1,7 @@
 import { TypeOf } from '../../TypeOf'
 import { Violation } from '../../Violation'
 import { Schema } from '../Schema'
+import { Signature } from '../Signature'
 import { kindSymbol } from '../kindSymbol'
 import { ArrayDefinition } from './ArrayDefinition'
 
@@ -20,6 +21,15 @@ export class ArraySchema<S extends Schema> extends Schema<
    */
   public static override is(schema: Schema): schema is ArraySchema<Schema> {
     return schema[kindSymbol] === ArraySchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link ArraySchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(schema: Schema): Signature {
+    return Signature.create('Array', schema.signature)
   }
 
   /** Get inner schema type */
