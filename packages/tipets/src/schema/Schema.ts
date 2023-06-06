@@ -5,12 +5,16 @@ import { typeSymbol } from '../typeSymbol'
 import { Definition } from './Definition'
 import { Signature } from './Signature'
 import { ValidationRule } from './ValidationRule'
+import { kindSymbol } from './kindSymbol'
 
 export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>
   extends ImmutableBuilder<D>
   implements Type<T>
 {
   public readonly [typeSymbol]!: T
+
+  /** Symbol to determine schema kind unique to its schema type */
+  public abstract readonly [kindSymbol]: string
 
   /** Get current schema signature */
   public get signature(): Signature {

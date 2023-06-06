@@ -1,6 +1,7 @@
 import { TypeMapOf } from '../../TypeMapOf'
 import { Violation } from '../../Violation'
 import { Schema } from '../Schema'
+import { kindSymbol } from '../kindSymbol'
 import { ObjectDefinition } from './ObjectDefinition'
 import { ObjectSchemaType } from './ObjectSchemaType'
 
@@ -8,6 +9,8 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
   TypeMapOf<T>,
   ObjectDefinition<T>
 > {
+  public override readonly [kindSymbol]: string = 'object'
+
   /** Get list of keys of schema */
   public get keys(): string[] {
     return Object.keys(this.properties)

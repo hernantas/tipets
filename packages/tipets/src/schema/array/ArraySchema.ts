@@ -1,12 +1,15 @@
 import { TypeOf } from '../../TypeOf'
 import { Violation } from '../../Violation'
 import { Schema } from '../Schema'
+import { kindSymbol } from '../kindSymbol'
 import { ArrayDefinition } from './ArrayDefinition'
 
 export class ArraySchema<S extends Schema> extends Schema<
   TypeOf<S>[],
   ArrayDefinition<S>
 > {
+  public override readonly [kindSymbol]: string = 'array'
+
   /** Get inner schema type */
   public get type(): S {
     return this.get('type')

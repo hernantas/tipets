@@ -1,6 +1,7 @@
 import { TypeMapOf } from '../../TypeMapOf'
 import { Violation } from '../../Violation'
 import { Schema } from '../Schema'
+import { kindSymbol } from '../kindSymbol'
 import { TupleDefinition } from './TupleDefinition'
 import { TupleSchemaType } from './TupleSchemaType'
 
@@ -8,6 +9,8 @@ export class TupleSchema<T extends TupleSchemaType> extends Schema<
   TypeMapOf<T>,
   TupleDefinition<T>
 > {
+  public override readonly [kindSymbol]: string = 'tuple'
+
   public get items(): T {
     return this.get('items')
   }

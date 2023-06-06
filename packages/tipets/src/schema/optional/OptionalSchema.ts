@@ -1,12 +1,15 @@
 import { TypeOf } from '../../TypeOf'
 import { Violation } from '../../Violation'
 import { Schema } from '../Schema'
+import { kindSymbol } from '../kindSymbol'
 import { OptionalDefinition } from './OptionalDefinition'
 
 export class OptionalSchema<T extends Schema> extends Schema<
   TypeOf<T> | undefined,
   OptionalDefinition<T>
 > {
+  public override readonly [kindSymbol]: string = 'optional'
+
   public get type(): T {
     return this.get('type')
   }

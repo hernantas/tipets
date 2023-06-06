@@ -1,6 +1,9 @@
 import { Schema } from '../Schema'
+import { kindSymbol } from '../kindSymbol'
 
 export class StringSchema extends Schema<string> {
+  public override readonly [kindSymbol]: string = 'string'
+
   public override is(value: unknown): value is string {
     return typeof value === 'string'
   }

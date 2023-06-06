@@ -1,6 +1,9 @@
 import { Schema } from '../Schema'
+import { kindSymbol } from '../kindSymbol'
 
 export class DateSchema extends Schema<Date> {
+  public override readonly [kindSymbol]: string = 'date'
+
   public override is(value: unknown): value is Date {
     return value instanceof Date
   }

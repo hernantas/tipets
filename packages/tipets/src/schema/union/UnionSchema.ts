@@ -4,11 +4,14 @@ import { UnionMap } from './UnionMap'
 import { MemberSchemaType } from '../MemberSchemaType'
 import { Schema } from '../Schema'
 import { UnionDefinition } from './UnionDefinition'
+import { kindSymbol } from '../kindSymbol'
 
 export class UnionSchema<T extends MemberSchemaType> extends Schema<
   UnionMap<TypeMapOf<T>>,
   UnionDefinition<T>
 > {
+  public override readonly [kindSymbol]: string = 'union'
+
   public get items(): T {
     return this.get('items')
   }

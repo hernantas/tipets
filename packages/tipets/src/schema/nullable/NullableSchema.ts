@@ -1,12 +1,15 @@
 import { TypeOf } from '../../TypeOf'
 import { Violation } from '../../Violation'
 import { Schema } from '../Schema'
+import { kindSymbol } from '../kindSymbol'
 import { NullableDefinition } from './NullableDefinition'
 
 export class NullableSchema<T extends Schema> extends Schema<
   TypeOf<T> | null,
   NullableDefinition<T>
 > {
+  public override readonly [kindSymbol]: string = 'nullable'
+
   public get type(): T {
     return this.get('type')
   }
