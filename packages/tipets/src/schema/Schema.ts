@@ -3,6 +3,7 @@ import { Type } from '../Type'
 import { Violation } from '../Violation'
 import { typeSymbol } from '../typeSymbol'
 import { Definition } from './Definition'
+import { Signature } from './Signature'
 import { ValidationRule } from './ValidationRule'
 
 export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>
@@ -10,6 +11,11 @@ export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>
   implements Type<T>
 {
   public readonly [typeSymbol]!: T
+
+  /** Get current schema signature */
+  public get signature(): Signature {
+    return this.get('signature')
+  }
 
   /** Get current validation rules */
   public get rules(): ValidationRule<T>[] {
