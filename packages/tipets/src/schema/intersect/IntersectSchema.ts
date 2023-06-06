@@ -10,7 +10,20 @@ export class IntersectSchema<T extends MemberSchemaType> extends Schema<
   IntersectMap<TypeMapOf<T>>,
   IntersectDefinition<T>
 > {
-  public override readonly [kindSymbol]: string = 'intersect'
+  public static readonly [kindSymbol]: string = 'intersect'
+
+  public override readonly [kindSymbol]: string = IntersectSchema[kindSymbol]
+
+  /**
+   * Check if given schema is instance of {@link IntersectSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link IntersectSchema}, false
+   *   otherwise
+   */
+  public static override is(schema: Schema): schema is IntersectSchema<any> {
+    return schema[kindSymbol] === IntersectSchema[kindSymbol]
+  }
 
   public get items(): T {
     return this.get('items')

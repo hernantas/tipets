@@ -8,7 +8,20 @@ export class NullableSchema<T extends Schema> extends Schema<
   TypeOf<T> | null,
   NullableDefinition<T>
 > {
-  public override readonly [kindSymbol]: string = 'nullable'
+  public static readonly [kindSymbol]: string = 'nullable'
+
+  public override readonly [kindSymbol]: string = NullableSchema[kindSymbol]
+
+  /**
+   * Check if given schema is instance of {@link NullableSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link NullableSchema}, false
+   *   otherwise
+   */
+  public static override is(schema: Schema): schema is NullableSchema<Schema> {
+    return schema[kindSymbol] === NullableSchema[kindSymbol]
+  }
 
   public get type(): T {
     return this.get('type')

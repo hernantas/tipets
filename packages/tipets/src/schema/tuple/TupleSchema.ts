@@ -9,7 +9,19 @@ export class TupleSchema<T extends TupleSchemaType> extends Schema<
   TypeMapOf<T>,
   TupleDefinition<T>
 > {
-  public override readonly [kindSymbol]: string = 'tuple'
+  public static readonly [kindSymbol]: string = 'tuple'
+
+  public override readonly [kindSymbol]: string = TupleSchema[kindSymbol]
+
+  /**
+   * Check if given schema is instance of {@link TupleSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link TupleSchema}, false otherwise
+   */
+  public static override is(schema: Schema): schema is TupleSchema<any> {
+    return schema[kindSymbol] === TupleSchema[kindSymbol]
+  }
 
   public get items(): T {
     return this.get('items')

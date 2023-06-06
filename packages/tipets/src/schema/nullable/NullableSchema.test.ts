@@ -1,4 +1,5 @@
 import { string } from '../string/string'
+import { NullableSchema } from './NullableSchema'
 import { nullable } from './nullable'
 
 describe('Nullable Schema', () => {
@@ -16,5 +17,9 @@ describe('Nullable Schema', () => {
     expect(schema.validate('Hello')).toHaveLength(0)
     expect(schema.validate(null)).toHaveLength(0)
     expect(schema.validate('Hell')).toHaveLength(2)
+  })
+
+  it('Instance checking', () => {
+    expect(NullableSchema.is(schema)).toBe(true)
   })
 })

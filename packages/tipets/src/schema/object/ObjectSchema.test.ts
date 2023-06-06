@@ -1,5 +1,6 @@
 import { number } from '../number/number'
 import { string } from '../string/string'
+import { ObjectSchema } from './ObjectSchema'
 import { object } from './object'
 
 describe('Object Schema', () => {
@@ -48,5 +49,9 @@ describe('Object Schema', () => {
         _number: -1,
       })
     ).toHaveLength(2)
+  })
+
+  it('Instance checking', () => {
+    expect(ObjectSchema.is(schema)).toBe(true)
   })
 })

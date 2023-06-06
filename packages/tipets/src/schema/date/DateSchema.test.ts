@@ -1,3 +1,4 @@
+import { DateSchema } from './DateSchema'
 import { date } from './date'
 
 describe('Date Schema', () => {
@@ -36,5 +37,9 @@ describe('Date Schema', () => {
       expect(validator.validate(new Date(2023, 5, 15))).toHaveLength(1)
       expect(validator.validate(new Date(2023, 5, 20))).toHaveLength(1)
     })
+  })
+
+  it('Instance checking', () => {
+    expect(DateSchema.is(schema)).toBe(true)
   })
 })

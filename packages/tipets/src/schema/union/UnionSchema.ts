@@ -1,16 +1,28 @@
 import { TypeMapOf } from '../../TypeMapOf'
 import { Violation } from '../../Violation'
-import { UnionMap } from './UnionMap'
 import { MemberSchemaType } from '../MemberSchemaType'
 import { Schema } from '../Schema'
-import { UnionDefinition } from './UnionDefinition'
 import { kindSymbol } from '../kindSymbol'
+import { UnionDefinition } from './UnionDefinition'
+import { UnionMap } from './UnionMap'
 
 export class UnionSchema<T extends MemberSchemaType> extends Schema<
   UnionMap<TypeMapOf<T>>,
   UnionDefinition<T>
 > {
-  public override readonly [kindSymbol]: string = 'union'
+  public static readonly [kindSymbol]: string = 'union'
+
+  public override readonly [kindSymbol]: string = UnionSchema[kindSymbol]
+
+  /**
+   * Check if given schema is instance of {@link UnionSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link UnionSchema}, false otherwise
+   */
+  public static override is(schema: Schema): schema is UnionSchema<any> {
+    return schema[kindSymbol] === UnionSchema[kindSymbol]
+  }
 
   public get items(): T {
     return this.get('items')

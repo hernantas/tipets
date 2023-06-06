@@ -1,3 +1,4 @@
+import { NumberSchema } from './NumberSchema'
 import { number } from './number'
 
 describe('Number Schema', () => {
@@ -62,5 +63,9 @@ describe('Number Schema', () => {
         validator.validate(Number.MAX_SAFE_INTEGER).length
       ).toBeGreaterThan(0)
     })
+  })
+
+  it('Instance checking', () => {
+    expect(NumberSchema.is(schema)).toBe(true)
   })
 })

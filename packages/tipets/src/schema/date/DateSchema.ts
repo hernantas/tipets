@@ -2,7 +2,19 @@ import { Schema } from '../Schema'
 import { kindSymbol } from '../kindSymbol'
 
 export class DateSchema extends Schema<Date> {
-  public override readonly [kindSymbol]: string = 'date'
+  public static readonly [kindSymbol]: string = 'date'
+
+  public override readonly [kindSymbol]: string = DateSchema[kindSymbol]
+
+  /**
+   * Check if given schema is instance of {@link DateSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link DateSchema}, false otherwise
+   */
+  public static override is(schema: Schema): schema is DateSchema {
+    return schema[kindSymbol] === DateSchema[kindSymbol]
+  }
 
   public override is(value: unknown): value is Date {
     return value instanceof Date

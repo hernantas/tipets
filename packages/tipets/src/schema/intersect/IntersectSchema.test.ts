@@ -1,6 +1,7 @@
 import { number } from '../number/number'
 import { object } from '../object/object'
 import { string } from '../string/string'
+import { IntersectSchema } from './IntersectSchema'
 import { intersect } from './intersect'
 
 describe('Intersect Schema', () => {
@@ -22,5 +23,9 @@ describe('Intersect Schema', () => {
   it('Validation', () => {
     expect(schema.validate({ _string: 'Hello', _number: 0 })).toHaveLength(0)
     expect(schema.validate({ _string: 'Hell', _number: -1 })).toHaveLength(2)
+  })
+
+  it('Instance checking', () => {
+    expect(IntersectSchema.is(schema)).toBe(true)
   })
 })

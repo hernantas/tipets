@@ -9,7 +9,19 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
   TypeMapOf<T>,
   ObjectDefinition<T>
 > {
-  public override readonly [kindSymbol]: string = 'object'
+  public static readonly [kindSymbol]: string = 'object'
+
+  public override readonly [kindSymbol]: string = ObjectSchema[kindSymbol]
+
+  /**
+   * Check if given schema is instance of {@link ObjectSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link ObjectSchema}, false otherwise
+   */
+  public static override is(schema: Schema): schema is ObjectSchema<any> {
+    return schema[kindSymbol] === ObjectSchema[kindSymbol]
+  }
 
   /** Get list of keys of schema */
   public get keys(): string[] {

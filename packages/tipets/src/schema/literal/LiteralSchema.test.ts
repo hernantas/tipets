@@ -1,3 +1,4 @@
+import { LiteralSchema } from './LiteralSchema'
 import { literal } from './literal'
 
 describe('Literal Schema', () => {
@@ -29,5 +30,10 @@ describe('Literal Schema', () => {
     expect(schema.is('false')).toBe(false)
     expect(schema.is(0)).toBe(false)
     expect(schema.is(1)).toBe(false)
+  })
+
+  it('Instance checking', () => {
+    const schema = literal(true)
+    expect(LiteralSchema.is(schema)).toBe(true)
   })
 })

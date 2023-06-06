@@ -1,3 +1,4 @@
+import { NullSchema } from './NullSchema'
 import { _null } from './null'
 
 describe('Null Schema', () => {
@@ -14,5 +15,9 @@ describe('Null Schema', () => {
     expect(schema.is(undefined)).toBe(false)
     expect(schema.is({})).toBe(false)
     expect(schema.is([])).toBe(false)
+  })
+
+  it('Instance checking', () => {
+    expect(NullSchema.is(schema)).toBe(true)
   })
 })

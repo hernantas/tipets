@@ -1,3 +1,4 @@
+import { AnySchema } from './AnySchema'
 import { any } from './any'
 
 describe('Any Schema', () => {
@@ -14,5 +15,9 @@ describe('Any Schema', () => {
     expect(schema.is(undefined)).toBe(true)
     expect(schema.is({})).toBe(true)
     expect(schema.is([])).toBe(true)
+  })
+
+  it('Instance checking', () => {
+    expect(AnySchema.is(schema)).toBe(true)
   })
 })

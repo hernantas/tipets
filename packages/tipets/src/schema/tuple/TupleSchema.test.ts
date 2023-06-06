@@ -1,4 +1,5 @@
 import { string } from '../string/string'
+import { TupleSchema } from './TupleSchema'
 import { tuple } from './tuple'
 
 describe('Tuple Schema', () => {
@@ -14,5 +15,9 @@ describe('Tuple Schema', () => {
   it('Validation', () => {
     expect(schema.validate(['1234', '123456'])).toHaveLength(0)
     expect(schema.validate(['1', '1'])).toHaveLength(2)
+  })
+
+  it('Instance checking', () => {
+    expect(TupleSchema.is(schema)).toBe(true)
   })
 })

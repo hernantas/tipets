@@ -8,7 +8,19 @@ export class ArraySchema<S extends Schema> extends Schema<
   TypeOf<S>[],
   ArrayDefinition<S>
 > {
-  public override readonly [kindSymbol]: string = 'array'
+  public static readonly [kindSymbol]: string = 'array'
+
+  public override readonly [kindSymbol]: string = ArraySchema[kindSymbol]
+
+  /**
+   * Check if given schema is instance of {@link ArraySchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link ArraySchema}, false otherwise
+   */
+  public static override is(schema: Schema): schema is ArraySchema<Schema> {
+    return schema[kindSymbol] === ArraySchema[kindSymbol]
+  }
 
   /** Get inner schema type */
   public get type(): S {

@@ -1,4 +1,5 @@
 import { string } from '../string/string'
+import { OptionalSchema } from './OptionalSchema'
 import { optional } from './optional'
 
 describe('Optional Schema', () => {
@@ -16,5 +17,9 @@ describe('Optional Schema', () => {
     expect(schema.validate('Hello')).toHaveLength(0)
     expect(schema.validate(undefined)).toHaveLength(0)
     expect(schema.validate('Hell')).toHaveLength(2)
+  })
+
+  it('Instance checking', () => {
+    expect(OptionalSchema.is(schema)).toBe(true)
   })
 })

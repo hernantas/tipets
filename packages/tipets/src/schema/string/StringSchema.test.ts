@@ -1,3 +1,4 @@
+import { StringSchema } from './StringSchema'
 import { string } from './string'
 
 describe('String Schema', () => {
@@ -63,5 +64,9 @@ describe('String Schema', () => {
     })
 
     // TODO: test other regex preset
+  })
+
+  it('Instance checking', () => {
+    expect(StringSchema.is(schema)).toBe(true)
   })
 })

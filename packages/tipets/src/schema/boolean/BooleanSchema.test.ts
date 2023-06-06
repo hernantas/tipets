@@ -1,3 +1,4 @@
+import { BooleanSchema } from './BooleanSchema'
 import { boolean } from './boolean'
 
 describe('Boolean Schema', () => {
@@ -10,5 +11,9 @@ describe('Boolean Schema', () => {
     expect(schema.is(1)).toBe(false)
     expect(schema.is('true')).toBe(false)
     expect(schema.is('false')).toBe(false)
+  })
+
+  it('Instance checking', () => {
+    expect(BooleanSchema.is(schema)).toBe(true)
   })
 })

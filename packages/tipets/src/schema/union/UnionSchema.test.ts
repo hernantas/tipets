@@ -1,5 +1,6 @@
 import { number } from '../number/number'
 import { string } from '../string/string'
+import { UnionSchema } from './UnionSchema'
 import { union } from './union'
 
 describe('Union Schema', () => {
@@ -16,5 +17,9 @@ describe('Union Schema', () => {
     expect(schema.validate('Hell')).toHaveLength(1)
     expect(schema.validate(100)).toHaveLength(0)
     expect(schema.validate(99)).toHaveLength(1)
+  })
+
+  it('Instance checking', () => {
+    expect(UnionSchema.is(schema)).toBe(true)
   })
 })

@@ -16,6 +16,16 @@ export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>
   /** Symbol to determine schema kind unique to its schema type */
   public abstract readonly [kindSymbol]: string
 
+  /**
+   * Check if given schema is instance of {@link Schema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link Schema}, false otherwise
+   */
+  public static is(value: unknown): value is Schema {
+    return value instanceof Schema
+  }
+
   /** Get current schema signature */
   public get signature(): Signature {
     return this.get('signature')

@@ -7,7 +7,20 @@ export class LiteralSchema<T extends LiteralType> extends Schema<
   T,
   LiteralDefinition<T>
 > {
-  public override readonly [kindSymbol]: string = 'literal'
+  public static readonly [kindSymbol]: string = 'literal'
+
+  public override readonly [kindSymbol]: string = LiteralSchema[kindSymbol]
+
+  /**
+   * Check if given schema is instance of {@link LiteralSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link LiteralSchema}, false
+   *   otherwise
+   */
+  public static override is(schema: Schema): schema is LiteralSchema<any> {
+    return schema[kindSymbol] === LiteralSchema[kindSymbol]
+  }
 
   public get value(): T {
     return this.get('value')

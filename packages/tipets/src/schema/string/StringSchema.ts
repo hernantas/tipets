@@ -2,7 +2,19 @@ import { Schema } from '../Schema'
 import { kindSymbol } from '../kindSymbol'
 
 export class StringSchema extends Schema<string> {
-  public override readonly [kindSymbol]: string = 'string'
+  public static readonly [kindSymbol]: string = 'string'
+
+  public override readonly [kindSymbol]: string = StringSchema[kindSymbol]
+
+  /**
+   * Check if given schema is instance of {@link StringSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link StringSchema}, false otherwise
+   */
+  public static override is(schema: Schema): schema is StringSchema {
+    return schema[kindSymbol] === StringSchema[kindSymbol]
+  }
 
   public override is(value: unknown): value is string {
     return typeof value === 'string'

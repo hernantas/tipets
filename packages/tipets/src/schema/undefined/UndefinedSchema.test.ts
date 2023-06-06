@@ -1,3 +1,4 @@
+import { UndefinedSchema } from './UndefinedSchema'
 import { _undefined } from './undefined'
 
 describe('Undefined Schema', () => {
@@ -14,5 +15,9 @@ describe('Undefined Schema', () => {
     expect(schema.is(null)).toBe(false)
     expect(schema.is({})).toBe(false)
     expect(schema.is([])).toBe(false)
+  })
+
+  it('Instance checking', () => {
+    expect(UndefinedSchema.is(schema)).toBe(true)
   })
 })
