@@ -1,7 +1,6 @@
-import { StringSchema } from '../../schema/string/StringSchema'
 import { Codec } from '../Codec'
 
-export class StringCodec implements Codec<StringSchema> {
+export class StringCodec implements Codec<string> {
   public decode(value: unknown): string {
     if (typeof value === 'string') {
       return value

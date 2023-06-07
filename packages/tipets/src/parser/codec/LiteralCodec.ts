@@ -1,11 +1,8 @@
 import { LiteralType } from '../../alias/LiteralType'
-import { LiteralSchema } from '../../schema/literal/LiteralSchema'
 import { Codec } from '../Codec'
 import { UnsupportedValueError } from '../error/UnsupportedValueError'
 
-export class LiteralCodec<T extends LiteralType>
-  implements Codec<LiteralSchema<T>>
-{
+export class LiteralCodec<T extends LiteralType> implements Codec<T> {
   public constructor(private readonly value: T) {}
 
   public decode(value: unknown): T {

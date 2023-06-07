@@ -1,4 +1,3 @@
-import { TypeOf } from '../../TypeOf'
 import { Schema } from '../../schema/Schema'
 import { Codec } from '../Codec'
 import { UnsupportedTypeError } from '../error/UnsupportedTypeError'
@@ -7,10 +6,10 @@ import { UnsupportedTypeError } from '../error/UnsupportedTypeError'
  * Fallback codec. If codec is not found for particular schema, use its own
  * schema to decode/encode
  */
-export class DefaultCodec<T extends Schema> implements Codec<T> {
-  public constructor(private readonly schema: T) {}
+export class DefaultCodec<T> implements Codec<T> {
+  public constructor(private readonly schema: Schema<T>) {}
 
-  public decode(value: unknown): TypeOf<T> {
+  public decode(value: unknown): T {
     if (this.schema.is(value)) {
       return value
     }
@@ -18,7 +17,7 @@ export class DefaultCodec<T extends Schema> implements Codec<T> {
     throw new UnsupportedTypeError(value)
   }
 
-  public encode(value: TypeOf<T>): TypeOf<T> {
+  public encode(value: T): T {
     return value
   }
 }

@@ -1,9 +1,8 @@
-import { DateSchema } from '../../schema/date/DateSchema'
 import { Codec } from '../Codec'
 import { UnsupportedTypeError } from '../error/UnsupportedTypeError'
 import { UnsupportedValueError } from '../error/UnsupportedValueError'
 
-export class DateCodec implements Codec<DateSchema> {
+export class DateCodec implements Codec<Date> {
   public decode(value: unknown): Date {
     if (typeof value === 'string') {
       const date = new Date(value)

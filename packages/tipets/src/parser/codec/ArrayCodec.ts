@@ -1,12 +1,9 @@
-import { TypeOf } from '../../TypeOf'
-import { Schema } from '../../schema/Schema'
-import { ArraySchema } from '../../schema/array/ArraySchema'
 import { Codec } from '../Codec'
 
-export class ArrayCodec<S extends Schema> implements Codec<ArraySchema<S>> {
-  public constructor(private readonly codec: Codec<S>) {}
+export class ArrayCodec<T> implements Codec<T[]> {
+  public constructor(private readonly codec: Codec<T>) {}
 
-  public decode(value: unknown): TypeOf<S>[] {
+  public decode(value: unknown): T[] {
     const values = Array.isArray(value)
       ? value
       : value !== undefined && value !== null
@@ -15,7 +12,7 @@ export class ArrayCodec<S extends Schema> implements Codec<ArraySchema<S>> {
     return values.map((value) => this.codec.decode(value))
   }
 
-  public encode(value: TypeOf<S>[]): unknown {
+  public encode(value: T[]): unknown {
     return value.map((value) => this.codec.encode(value))
   }
 }

@@ -1,18 +1,13 @@
-import { TypeOf } from '../../TypeOf'
-import { Schema } from '../../schema/Schema'
-import { NullableSchema } from '../../schema/nullable/NullableSchema'
 import { Codec } from '../Codec'
 
-export class NullableCodec<S extends Schema>
-  implements Codec<NullableSchema<S>>
-{
-  public constructor(private readonly codec: Codec<S>) {}
+export class NullableCodec<T> implements Codec<T | null> {
+  public constructor(private readonly codec: Codec<T>) {}
 
-  public decode(value: unknown): TypeOf<S> | null {
+  public decode(value: unknown): T | null {
     return value === null ? null : this.codec.decode(value)
   }
 
-  public encode(value: TypeOf<S> | null): unknown {
+  public encode(value: T | null): unknown {
     return value === null ? null : this.codec.encode(value)
   }
 }

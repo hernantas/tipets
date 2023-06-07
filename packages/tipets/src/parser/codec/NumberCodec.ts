@@ -1,7 +1,6 @@
-import { NumberSchema } from '../../schema/number/NumberSchema'
 import { Codec } from '../Codec'
 
-export class NumberCodec implements Codec<NumberSchema> {
+export class NumberCodec implements Codec<number> {
   public decode(value: unknown): number {
     if (typeof value === 'number') {
       return value
