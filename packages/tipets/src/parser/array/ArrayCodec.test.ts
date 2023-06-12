@@ -1,5 +1,5 @@
+import { StringCodec } from '../string/StringCodec'
 import { ArrayCodec } from './ArrayCodec'
-import { StringCodec } from './StringCodec'
 
 describe('ArrayCodec', () => {
   const codec = new ArrayCodec(new StringCodec())

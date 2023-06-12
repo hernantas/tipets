@@ -1,4 +1,4 @@
-import { string } from '../../schema/string/string'
+import { string } from '../schema/string/string'
 import { DefaultCodec } from './DefaultCodec'
 
 describe('DefaultCodec', () => {
