@@ -1,7 +1,7 @@
-import { TypeOf } from '../../TypeOf'
-import { Violation } from '../../Violation'
 import { Schema } from '../Schema'
 import { Signature } from '../Signature'
+import { TypeOf } from '../TypeOf'
+import { Violation } from '../Violation'
 import { kindSymbol } from '../kindSymbol'
 import { OptionalDefinition } from './OptionalDefinition'
 

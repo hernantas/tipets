@@ -1,4 +1,4 @@
-import { TypeMapOf } from '../../TypeMapOf'
+import { TypeMapOf } from '../TypeMapOf'
 import { Definition } from '../Definition'
 import { ObjectSchemaType } from './ObjectSchemaType'
 

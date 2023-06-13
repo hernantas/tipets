@@ -1,4 +1,4 @@
-import { TypeOf } from '../../TypeOf'
+import { TypeOf } from '../TypeOf'
 import { Definition } from '../Definition'
 import { Schema } from '../Schema'
 

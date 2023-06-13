@@ -1,5 +1,5 @@
-import { TypeMapOf } from '../../TypeMapOf'
-import { Violation } from '../../Violation'
+import { TypeMapOf } from '../TypeMapOf'
+import { Violation } from '../Violation'
 import { MemberSchemaType } from '../MemberSchemaType'
 import { Schema } from '../Schema'
 import { Signature } from '../Signature'

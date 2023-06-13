@@ -1,4 +1,4 @@
-import { TypeOf } from '../TypeOf'
+import { TypeOf } from '../schema/TypeOf'
 import { Schema } from '../schema/Schema'
 import { Codec } from './Codec'
 import { LoadCodecFn } from './LoadCodecFn'

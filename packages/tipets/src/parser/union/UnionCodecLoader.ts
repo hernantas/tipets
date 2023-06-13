@@ -1,7 +1,7 @@
-import { TypeOf } from '../../TypeOf'
 import { MemberType } from '../../alias/MemberType'
 import { MemberSchemaType } from '../../schema/MemberSchemaType'
 import { Schema } from '../../schema/Schema'
+import { TypeOf } from '../../schema/TypeOf'
 import { UnionSchema } from '../../schema/union/UnionSchema'
 import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
