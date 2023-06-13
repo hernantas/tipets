@@ -5,7 +5,7 @@ import { CodecLoader } from './CodecLoader'
 import { LoadCodecFn } from './LoadCodecFn'
 import { ParserPluginFn } from './ParserPluginFn'
 import { loadDefaultCodec } from './default/loadDefaultCodec'
-import { defaultPlugin } from './defaultPlugin'
+import { defaultPlugin } from './default/defaultPlugin'
 
 export class Parser {
   private readonly codecMap: Map<string, Codec> = new Map()
