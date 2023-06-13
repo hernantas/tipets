@@ -1,11 +1,14 @@
 import { TypeOf } from '../TypeOf'
 import { Schema } from '../schema/Schema'
 import { Codec } from './Codec'
+import { CodecLoader } from './CodecLoader'
 import { LoadCodecFn } from './LoadCodecFn'
 import { loadDefaultCodec } from './default/loadDefaultCodec'
 
 export class Parser {
   private readonly codecMap: Map<string, Codec> = new Map()
+
+  private readonly loaders: CodecLoader[] = []
 
   public constructor(
     private readonly fallbackLoadCodec: LoadCodecFn = loadDefaultCodec
@@ -16,13 +19,25 @@ export class Parser {
     return this
   }
 
+  public addLoader<S extends Schema>(loader: CodecLoader<S>): this {
+    this.loaders.push(loader)
+    return this
+  }
+
   public load<S extends Schema>(schema: S): Codec<TypeOf<S>> {
     const signature = schema.signature.toString()
     let codec = this.codecMap.get(signature)
+
     if (codec === undefined) {
-      codec = this.fallbackLoadCodec(schema)
+      const loader = this.loaders.find((loader) => loader.is(schema))
+      if (loader !== undefined) {
+        codec = loader.create(schema, (schema) => this.load(schema))
+      } else {
+        codec = this.fallbackLoadCodec(schema)
+      }
       this.codecMap.set(signature, codec)
     }
+
     return codec
   }
 

@@ -1,5 +1,7 @@
+import { array } from '../schema/array/array'
 import { string } from '../schema/string/string'
 import { Parser } from './Parser'
+import { ArrayCodecLoader } from './array/ArrayCodecLoader'
 import { StringCodec } from './string/StringCodec'
 
 describe('Parser', () => {
@@ -13,5 +15,14 @@ describe('Parser', () => {
     const parser = new Parser().addCodec(string(), new StringCodec())
     expect(parser.decode('Hello', string())).toBe('Hello')
     expect(parser.decode(0, string())).toBe('0')
+  })
+
+  it('Parser with Loader should dynamically create new codec', () => {
+    const parser = new Parser()
+      .addCodec(string(), new StringCodec())
+      .addLoader(new ArrayCodecLoader())
+    expect(
+      parser.decode(['Hello', 'World', '!!!'], array(string()))
+    ).toStrictEqual(['Hello', 'World', '!!!'])
   })
 })
