@@ -3,14 +3,24 @@ import { Schema } from '../schema/Schema'
 import { Codec } from './Codec'
 import { CodecLoader } from './CodecLoader'
 import { LoadCodecFn } from './LoadCodecFn'
+import { ParserPluginFn } from './ParserPluginFn'
 import { loadDefaultCodec } from './default/loadDefaultCodec'
+import { defaultPlugin } from './defaultPlugin'
 
 export class Parser {
   private readonly codecMap: Map<string, Codec> = new Map()
 
   private readonly loaders: CodecLoader[] = []
 
-  public constructor(
+  public static empty(fallbackLoadCodec?: LoadCodecFn): Parser {
+    return new Parser(fallbackLoadCodec)
+  }
+
+  public static create(fallbackLoadCodec?: LoadCodecFn): Parser {
+    return new Parser(fallbackLoadCodec).addPlugin(defaultPlugin)
+  }
+
+  private constructor(
     private readonly fallbackLoadCodec: LoadCodecFn = loadDefaultCodec
   ) {}
 
@@ -21,6 +31,11 @@ export class Parser {
 
   public addLoader<S extends Schema>(loader: CodecLoader<S>): this {
     this.loaders.push(loader)
+    return this
+  }
+
+  public addPlugin(plugin: ParserPluginFn): this {
+    plugin(this)
     return this
   }
 

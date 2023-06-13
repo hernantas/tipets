@@ -6,19 +6,19 @@ import { StringCodec } from './string/StringCodec'
 
 describe('Parser', () => {
   it('Empty parser should parse if same type as schema or throw', () => {
-    const parser = new Parser()
+    const parser = Parser.empty()
     expect(parser.decode('Hello', string())).toBe('Hello')
     expect(() => parser.decode(4, string())).toThrow()
   })
 
   it('Basic parser should parse if type is supported', () => {
-    const parser = new Parser().addCodec(string(), new StringCodec())
+    const parser = Parser.empty().addCodec(string(), new StringCodec())
     expect(parser.decode('Hello', string())).toBe('Hello')
     expect(parser.decode(0, string())).toBe('0')
   })
 
   it('Parser with Loader should dynamically create new codec', () => {
-    const parser = new Parser()
+    const parser = Parser.empty()
       .addCodec(string(), new StringCodec())
       .addLoader(new ArrayCodecLoader())
     expect(
