@@ -5,8 +5,8 @@ import { Schema } from '../../schema/Schema'
 import { IntersectSchema } from '../../schema/intersect/IntersectSchema'
 import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
-import { LoadCodecFn } from '../LoadCodecFn'
 import { CodecMap } from '../CodecMap'
+import { LoadCodecFn } from '../LoadCodecFn'
 import { IntersectCodec } from './IntersectCodec'
 
 export class IntersectCodecLoader

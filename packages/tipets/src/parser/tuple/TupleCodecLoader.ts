@@ -5,8 +5,8 @@ import { TupleSchema } from '../../schema/tuple/TupleSchema'
 import { TupleSchemaType } from '../../schema/tuple/TupleSchemaType'
 import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
-import { LoadCodecFn } from '../LoadCodecFn'
 import { CodecMap } from '../CodecMap'
+import { LoadCodecFn } from '../LoadCodecFn'
 import { TupleCodec } from './TupleCodec'
 
 export class TupleCodecLoader
