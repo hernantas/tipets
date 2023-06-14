@@ -2,6 +2,8 @@
   "name": "tipets",
   "description": "Typescript-first schema declaration and validation library",
   "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/hernantas/tipets.git",
