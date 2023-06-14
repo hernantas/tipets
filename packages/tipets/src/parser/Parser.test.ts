@@ -25,4 +25,13 @@ describe('Parser', () => {
       parser.decode(['Hello', 'World', '!!!'], array(string()))
     ).toStrictEqual(['Hello', 'World', '!!!'])
   })
+
+  it('Parser should return `Result` when using try decode/encode', () => {
+    const parser = Parser.empty()
+    expect(parser.tryDecode('Hello', string())).toStrictEqual({
+      success: true,
+      value: 'Hello',
+    })
+    expect(parser.tryDecode(0, string())).toMatchObject({ success: false })
+  })
 })

@@ -4,8 +4,11 @@ import { Codec } from './Codec'
 import { CodecLoader } from './CodecLoader'
 import { LoadCodecFn } from './LoadCodecFn'
 import { ParserPluginFn } from './ParserPluginFn'
-import { loadDefaultCodec } from './default/loadDefaultCodec'
+import { Result } from './Result'
+import { UnsupportedTypeError } from './UnsupportedTypeError'
+import { UnsupportedValueError } from './UnsupportedValueError'
 import { defaultPlugin } from './default/defaultPlugin'
+import { loadDefaultCodec } from './default/loadDefaultCodec'
 
 export class Parser {
   private readonly codecMap: Map<string, Codec> = new Map()
@@ -62,5 +65,75 @@ export class Parser {
 
   public encode<S extends Schema>(value: TypeOf<S>, schema: S): unknown {
     return this.load(schema).encode(value)
+  }
+
+  public tryDecode<S extends Schema>(
+    value: unknown,
+    schema: S
+  ): Result<TypeOf<S>> {
+    try {
+      const decoded = this.load(schema).decode(value)
+      const violations = schema.validate(decoded)
+      return violations.length === 0
+        ? {
+            success: true,
+            value: decoded,
+          }
+        : {
+            success: false,
+            violations: violations,
+          }
+    } catch (error) {
+      return {
+        success: false,
+        violations: [
+          error instanceof UnsupportedTypeError ||
+          error instanceof UnsupportedValueError
+            ? error.toViolation()
+            : {
+                type: 'decode',
+                message: 'Error occurred when decoding',
+                args: {
+                  error,
+                },
+              },
+        ],
+      }
+    }
+  }
+
+  public tryEncode<S extends Schema>(
+    value: TypeOf<S>,
+    schema: S
+  ): Result<unknown> {
+    try {
+      const encoded = this.load(schema).encode(value)
+      const violations = schema.validate(encoded)
+      return violations.length === 0
+        ? {
+            success: true,
+            value: encoded,
+          }
+        : {
+            success: false,
+            violations: violations,
+          }
+    } catch (error) {
+      return {
+        success: false,
+        violations: [
+          error instanceof UnsupportedTypeError ||
+          error instanceof UnsupportedValueError
+            ? error.toViolation()
+            : {
+                type: 'encode',
+                message: 'Error occurred when encoding',
+                args: {
+                  error,
+                },
+              },
+        ],
+      }
+    }
   }
 }
