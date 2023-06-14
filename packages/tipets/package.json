@@ -15,5 +15,9 @@
     "type",
     "validate",
     "validation"
-  ]
+  ],
+  "scripts": {
+    "build": "npx tsc --build",
+    "test": "npx jest"
+  }
 }
