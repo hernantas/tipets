@@ -109,13 +109,15 @@ export class NumberSchema extends Schema<number> {
    * @param message Optional message when rule is violated
    * @returns A new instance with new rules added
    */
-  public less(limit: number, message?: string): this {
+  public less(
+    limit: number,
+    message: string = `${this.get('label') ?? ''} must be less than ${limit}`
+  ): this {
     return this.check({
       type: `number.less`,
       args: { limit },
       validate: (v) => v < limit,
-      message:
-        message ?? `${this.get('label') ?? ''} must be less than ${limit}`,
+      message,
     })
   }
 
@@ -126,11 +128,13 @@ export class NumberSchema extends Schema<number> {
    * @param message Optional message when rule is violated
    * @returns A new instance with new rules added
    */
-  public positive(message?: string): this {
+  public positive(
+    message: string = `${this.get('label') ?? ''} must be positive number`
+  ): this {
     return this.check({
       type: `number.positive`,
       validate: (v) => v === 0 || v >= 0,
-      message: message ?? `${this.get('label') ?? ''} must be positive number`,
+      message,
     })
   }
 
@@ -141,11 +145,13 @@ export class NumberSchema extends Schema<number> {
    * @param message Optional message when rule is violated
    * @returns A new instance with new rules added
    */
-  public negative(message?: string): this {
+  public negative(
+    message: string = `${this.get('label') ?? ''} must be negative number`
+  ): this {
     return this.check({
       type: `number.negative`,
       validate: (v) => v === -0 || v < 0,
-      message: message ?? `${this.get('label') ?? ''} must be negative number`,
+      message: message,
     })
   }
 }
