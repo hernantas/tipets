@@ -133,7 +133,7 @@ export class NumberSchema extends Schema<number> {
   ): this {
     return this.check({
       type: `number.positive`,
-      validate: (v) => v === 0 || v >= 0,
+      validate: (v) => v > 0,
       message,
     })
   }
@@ -150,7 +150,7 @@ export class NumberSchema extends Schema<number> {
   ): this {
     return this.check({
       type: `number.negative`,
-      validate: (v) => v === -0 || v < 0,
+      validate: (v) => v < 0,
       message: message,
     })
   }

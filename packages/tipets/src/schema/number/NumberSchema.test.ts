@@ -62,6 +62,28 @@ describe('Number Schema', () => {
         validator.validate(Number.MAX_SAFE_INTEGER).length
       ).toBeGreaterThan(0)
     })
+
+    it('Positive', () => {
+      const validator = schema.positive()
+      expect(validator.validate(1)).toHaveLength(0)
+      expect(validator.validate(Number.MAX_SAFE_INTEGER)).toHaveLength(0)
+      expect(validator.validate(0).length).toBeGreaterThan(0)
+      expect(validator.validate(-1).length).toBeGreaterThan(0)
+      expect(
+        validator.validate(Number.MIN_SAFE_INTEGER).length
+      ).toBeGreaterThan(0)
+    })
+
+    it('Negative', () => {
+      const validator = schema.negative()
+      expect(validator.validate(-1)).toHaveLength(0)
+      expect(validator.validate(Number.MIN_SAFE_INTEGER)).toHaveLength(0)
+      expect(validator.validate(0).length).toBeGreaterThan(0)
+      expect(validator.validate(1).length).toBeGreaterThan(0)
+      expect(
+        validator.validate(Number.MAX_SAFE_INTEGER).length
+      ).toBeGreaterThan(0)
+    })
   })
 
   it('Instance checking', () => {
