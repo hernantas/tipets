@@ -16,6 +16,9 @@
     "validate",
     "validation"
   ],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "npx tsc --build",
     "test": "npx jest"
