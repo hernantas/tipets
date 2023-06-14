@@ -1,0 +1,34 @@
+{
+  "name": "@tipets/bigdecimal",
+  "description": "Extension tipets support for bigdecimal.js",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hernantas/tipets.git",
+    "directory": "packages/tipets-bigdecimal"
+  },
+  "author": "Zulfikar Raditya Hernanta <hernantas@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "runtime",
+    "schema",
+    "type",
+    "validate",
+    "validation",
+    "bigdecimal",
+    "decimal",
+    "math",
+    "arbitrary",
+    "precision",
+    "number",
+    "arithmetic"
+  ],
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npx tsc --build",
+    "test": "npx jest"
+  }
+}
