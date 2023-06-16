@@ -24,6 +24,7 @@
   ],
   "scripts": {
     "build": "npx tsc --build",
-    "test": "npx jest"
+    "test": "npx jest",
+    "clean": "rimraf dist *.tsbuildinfo"
   }
 }
