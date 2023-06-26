@@ -2,6 +2,10 @@
   "name": "@tipets/bigdecimal",
   "description": "Extension tipets support for bigdecimal.js",
   "version": "0.1.0",
+  "type": "module",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/hernantas/tipets.git",
@@ -27,10 +31,17 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "scripts": {
-    "build": "npx tsc --build",
+    "build": "npx tsx ../../build.ts",
     "test": "npx jest",
-    "clean": "rimraf dist *.tsbuildinfo"
+    "clean": "rimraf dist"
   },
   "dependencies": {
     "bigdecimal.js": "^1.3.0",
