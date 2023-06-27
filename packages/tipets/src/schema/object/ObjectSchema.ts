@@ -1,8 +1,10 @@
-import { TypeMapOf } from '../TypeMapOf'
-import { Violation } from '../Violation'
 import { Schema } from '../Schema'
 import { Signature } from '../Signature'
+import { TypeMapOf } from '../TypeMapOf'
+import { Violation } from '../Violation'
 import { kindSymbol } from '../kindSymbol'
+import { OptionalSchema } from '../optional/OptionalSchema'
+import { OptionalSchemaMap } from '../optional/OptionalSchemaMap'
 import { ObjectDefinition } from './ObjectDefinition'
 import { ObjectSchemaType } from './ObjectSchemaType'
 
@@ -88,5 +90,16 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
             .map((error) => ({ ...error, path: [key, ...(error.path ?? [])] }))
         )
       )
+  }
+
+  public partial(): ObjectSchema<OptionalSchemaMap<T>> {
+    return ObjectSchema.create(
+      Object.fromEntries(
+        Object.entries(this.properties).map(([key, schema]) => [
+          key,
+          OptionalSchema.create(schema),
+        ])
+      ) as unknown as OptionalSchemaMap<T>
+    )
   }
 }

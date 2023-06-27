@@ -1,4 +1,5 @@
 import { number } from '../number/number'
+import { OptionalSchema } from '../optional/OptionalSchema'
 import { string } from '../string/string'
 import { ObjectSchema } from './ObjectSchema'
 
@@ -48,6 +49,12 @@ describe('Object Schema', () => {
         _number: -1,
       })
     ).toHaveLength(2)
+  })
+
+  it('Partial', () => {
+    const s = schema.partial()
+    expect(s.props._string).toBeInstanceOf(OptionalSchema)
+    expect(s.props._number).toBeInstanceOf(OptionalSchema)
   })
 
   it('Instance checking', () => {
