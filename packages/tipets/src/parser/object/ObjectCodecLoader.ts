@@ -1,4 +1,3 @@
-import { Definition } from '../../schema/Definition'
 import { Schema } from '../../schema/Schema'
 import { TypeOf } from '../../schema/TypeOf'
 import { ObjectSchema } from '../../schema/object/ObjectSchema'
@@ -11,9 +10,7 @@ import { ObjectCodec } from './ObjectCodec'
 export class ObjectCodecLoader
   implements CodecLoader<ObjectSchema<ObjectSchemaType>>
 {
-  public is(
-    schema: Schema<any, Definition<any>>
-  ): schema is ObjectSchema<ObjectSchemaType> {
+  public is(schema: Schema): schema is ObjectSchema<ObjectSchemaType> {
     return ObjectSchema.is(schema)
   }
 

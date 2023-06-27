@@ -7,7 +7,7 @@ import { Violation } from './Violation'
 import { kindSymbol } from './kindSymbol'
 import { typeSymbol } from './typeSymbol'
 
-export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>
+export abstract class Schema<T = any, D extends Definition = Definition>
   extends ImmutableBuilder<D>
   implements Type<T>
 {

@@ -3,12 +3,12 @@ import { Signature } from './Signature'
 import { ValidationRule } from './ValidationRule'
 
 /** Schema definition */
-export interface Definition<T> {
+export interface Definition {
   /** Signature for current definition */
   readonly signature: Signature
 
   /** List of rules for current schema */
-  readonly rules?: ValidationRule<T>[]
+  readonly rules?: ValidationRule<any>[]
 
   readonly [key: Key]: unknown
 }
