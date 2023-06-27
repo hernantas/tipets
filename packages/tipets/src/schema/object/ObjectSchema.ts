@@ -1,3 +1,4 @@
+import { Merge } from '../../alias/Merge'
 import { Schema } from '../Schema'
 import { Signature } from '../Signature'
 import { TypeMapOf } from '../TypeMapOf'
@@ -90,6 +91,17 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
             .map((error) => ({ ...error, path: [key, ...(error.path ?? [])] }))
         )
       )
+  }
+
+  public extend<U extends ObjectSchemaType>(
+    extension: U
+  ): ObjectSchema<Merge<T, U>> {
+    return ObjectSchema.create(
+      Object.fromEntries([
+        ...Object.entries(this.properties),
+        ...Object.entries(extension),
+      ]) as Merge<T, U>
+    )
   }
 
   public partial(): ObjectSchema<OptionalSchemaMap<T>> {

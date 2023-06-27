@@ -1,3 +1,4 @@
+import { boolean } from '../boolean/boolean'
 import { number } from '../number/number'
 import { OptionalSchema } from '../optional/OptionalSchema'
 import { string } from '../string/string'
@@ -49,6 +50,15 @@ describe('Object Schema', () => {
         _number: -1,
       })
     ).toHaveLength(2)
+  })
+
+  it('Extend', () => {
+    const s = schema.extend({
+      _boolean: boolean(),
+    })
+    expect(s.props).toHaveProperty('_string')
+    expect(s.props).toHaveProperty('_number')
+    expect(s.props).toHaveProperty('_boolean')
   })
 
   it('Partial', () => {
