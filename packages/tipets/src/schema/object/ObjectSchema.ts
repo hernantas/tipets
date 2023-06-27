@@ -120,8 +120,8 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
       Object.fromEntries(
         Object.entries(this.properties)
           .filter(([key]) => keys.includes(key as K))
-          .map(([key, schema]) => [key, OptionalSchema.create(schema)])
-      ) as unknown as Pick<T, K>
+          .map(([key, schema]) => [key, schema])
+      ) as Pick<T, K>
     )
   }
 
@@ -130,8 +130,8 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
       Object.fromEntries(
         Object.entries(this.properties)
           .filter(([key]) => !keys.includes(key as K))
-          .map(([key, schema]) => [key, OptionalSchema.create(schema)])
-      ) as unknown as Omit<T, K>
+          .map(([key, schema]) => [key, schema])
+      ) as Omit<T, K>
     )
   }
 }
