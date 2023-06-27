@@ -57,6 +57,18 @@ describe('Object Schema', () => {
     expect(s.props._number).toBeInstanceOf(OptionalSchema)
   })
 
+  it('Pick', () => {
+    const s = schema.pick('_string')
+    expect(s.props).toHaveProperty('_string')
+    expect(s.props).not.toHaveProperty('_number')
+  })
+
+  it('Omit', () => {
+    const s = schema.omit('_number')
+    expect(s.props).toHaveProperty('_string')
+    expect(s.props).not.toHaveProperty('_number')
+  })
+
   it('Instance checking', () => {
     expect(ObjectSchema.is(schema)).toBe(true)
   })

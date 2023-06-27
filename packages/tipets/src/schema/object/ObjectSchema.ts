@@ -102,4 +102,24 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
       ) as unknown as OptionalSchemaMap<T>
     )
   }
+
+  public pick<K extends keyof T>(...keys: K[]): ObjectSchema<Pick<T, K>> {
+    return ObjectSchema.create(
+      Object.fromEntries(
+        Object.entries(this.properties)
+          .filter(([key]) => keys.includes(key as K))
+          .map(([key, schema]) => [key, OptionalSchema.create(schema)])
+      ) as unknown as Pick<T, K>
+    )
+  }
+
+  public omit<K extends keyof T>(...keys: K[]): ObjectSchema<Omit<T, K>> {
+    return ObjectSchema.create(
+      Object.fromEntries(
+        Object.entries(this.properties)
+          .filter(([key]) => !keys.includes(key as K))
+          .map(([key, schema]) => [key, OptionalSchema.create(schema)])
+      ) as unknown as Omit<T, K>
+    )
+  }
 }
