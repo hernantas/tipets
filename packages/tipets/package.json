@@ -34,6 +34,7 @@
   "scripts": {
     "build": "npx tsx ../../build.ts",
     "test": "npx jest",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "rebuild": "npm run clean && npm run build"
   }
 }
