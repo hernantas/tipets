@@ -3,6 +3,9 @@
     "packages/*"
   ],
   "private": true,
+  "scripts": {
+    "format": "npx prettier --write ."
+  },
   "devDependencies": {
     "@types/jest": "^29.5.1",
     "arg": "^5.0.2",
