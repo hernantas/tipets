@@ -2,6 +2,7 @@ import { Schema } from '../Schema'
 import { Signature } from '../Signature'
 import { kindSymbol } from '../kindSymbol'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class AnySchema extends Schema<any> {
   public static readonly [kindSymbol]: string = 'any'
 
@@ -39,6 +40,7 @@ export class AnySchema extends Schema<any> {
     return AnySchema.instance
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public override is(_value: unknown): _value is any {
     return true
   }

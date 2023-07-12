@@ -111,9 +111,7 @@ export class BigDecimalSchema extends Schema<BigDecimal> {
    */
   public less(
     limit: BigDecimal,
-    message: string = `${
-      this.get('label') ?? ''
-    } must be less than ${limit.toPlainString()}`
+    message: string = `must be less than ${limit.toPlainString()}`
   ): this {
     return this.check({
       type: `bigdecimal.less`,
@@ -130,9 +128,7 @@ export class BigDecimalSchema extends Schema<BigDecimal> {
    * @param message Optional message when rule is violated
    * @returns A new instance with new rules added
    */
-  public positive(
-    message: string = `${this.get('label') ?? ''} must be positive number`
-  ): this {
+  public positive(message: string = `must be positive number`): this {
     return this.check({
       type: `bigdecimal.positive`,
       validate: (v) => v.greaterThan(0),
@@ -147,9 +143,7 @@ export class BigDecimalSchema extends Schema<BigDecimal> {
    * @param message Optional message when rule is violated
    * @returns A new instance with new rules added
    */
-  public negative(
-    message: string = `${this.get('label') ?? ''} must be negative number`
-  ): this {
+  public negative(message: string = `must be negative number`): this {
     return this.check({
       type: `bigdecimal.negative`,
       validate: (v) => v.lowerThan(-0),

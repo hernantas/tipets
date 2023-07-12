@@ -21,7 +21,9 @@ export class UnionSchema<T extends MemberSchemaType> extends Schema<
    * @param schema Schema to be checked
    * @returns True if schema is instance of {@link UnionSchema}, false otherwise
    */
-  public static override is(schema: Schema): schema is UnionSchema<any> {
+  public static override is(
+    schema: Schema
+  ): schema is UnionSchema<MemberSchemaType> {
     return schema[kindSymbol] === UnionSchema[kindSymbol]
   }
 

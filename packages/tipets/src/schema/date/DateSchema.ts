@@ -109,14 +109,15 @@ export class DateSchema extends Schema<Date> {
    * @param message Optional message when rule is violated
    * @returns A new instance with new rules added
    */
-  public less(limit: Date, message?: string): this {
+  public less(
+    limit: Date,
+    message: string = `must be less than ${limit.toISOString()}`
+  ): this {
     return this.check({
       type: `date.less`,
       args: { limit },
       validate: (v) => v < limit,
-      message:
-        message ??
-        `${this.get('label') ?? ''} must be less than ${limit.toISOString()}`,
+      message: message,
     })
   }
 }

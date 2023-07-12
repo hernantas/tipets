@@ -20,7 +20,9 @@ export class TupleSchema<T extends TupleSchemaType> extends Schema<
    * @param schema Schema to be checked
    * @returns True if schema is instance of {@link TupleSchema}, false otherwise
    */
-  public static override is(schema: Schema): schema is TupleSchema<any> {
+  public static override is(
+    schema: Schema
+  ): schema is TupleSchema<TupleSchemaType> {
     return schema[kindSymbol] === TupleSchema[kindSymbol]
   }
 

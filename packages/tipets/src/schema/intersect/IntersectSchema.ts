@@ -22,7 +22,9 @@ export class IntersectSchema<T extends MemberSchemaType> extends Schema<
    * @returns True if schema is instance of {@link IntersectSchema}, false
    *   otherwise
    */
-  public static override is(schema: Schema): schema is IntersectSchema<any> {
+  public static override is(
+    schema: Schema
+  ): schema is IntersectSchema<MemberSchemaType> {
     return schema[kindSymbol] === IntersectSchema[kindSymbol]
   }
 

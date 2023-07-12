@@ -23,7 +23,9 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
    * @param schema Schema to be checked
    * @returns True if schema is instance of {@link ObjectSchema}, false otherwise
    */
-  public static override is(schema: Schema): schema is ObjectSchema<any> {
+  public static override is(
+    schema: Schema
+  ): schema is ObjectSchema<ObjectSchemaType> {
     return schema[kindSymbol] === ObjectSchema[kindSymbol]
   }
 

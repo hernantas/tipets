@@ -60,6 +60,7 @@ export class Parser {
   }
 
   public decode<S extends Schema>(value: unknown, schema: S): TypeOf<S> {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return this.load(schema).decode(value)
   }
 

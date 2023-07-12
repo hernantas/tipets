@@ -19,7 +19,9 @@ export class LiteralSchema<T extends LiteralType> extends Schema<
    * @returns True if schema is instance of {@link LiteralSchema}, false
    *   otherwise
    */
-  public static override is(schema: Schema): schema is LiteralSchema<any> {
+  public static override is(
+    schema: Schema
+  ): schema is LiteralSchema<LiteralType> {
     return schema[kindSymbol] === LiteralSchema[kindSymbol]
   }
 

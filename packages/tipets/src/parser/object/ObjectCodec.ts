@@ -9,7 +9,7 @@ export class ObjectCodec<T extends ObjectType> implements Codec<T> {
   public decode(value: unknown): T {
     if (typeof value === 'object' && value !== null) {
       return Object.fromEntries(
-        Object.entries(this.codecs).map(([key, codec]) => [
+        Object.entries<Codec>(this.codecs).map(([key, codec]) => [
           key,
           codec.decode((value as ObjectType)[key]),
         ])
@@ -20,7 +20,7 @@ export class ObjectCodec<T extends ObjectType> implements Codec<T> {
 
   public encode(value: T): unknown {
     return Object.fromEntries(
-      Object.entries(this.codecs).map(([key, codec]) => [
+      Object.entries<Codec>(this.codecs).map(([key, codec]) => [
         key,
         codec.encode(value[key]),
       ])

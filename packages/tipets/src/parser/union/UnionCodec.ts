@@ -23,7 +23,9 @@ export class UnionCodec<T extends MemberType> implements Codec<UnionMap<T>> {
     for (const info of this.infos) {
       try {
         return info.codec.decode(value)
-      } catch (e) {}
+      } catch (e) {
+        // do nothing
+      }
     }
 
     throw new UnsupportedTypeError(value)

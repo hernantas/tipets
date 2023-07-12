@@ -22,6 +22,7 @@ export class UnionCodecLoader
   ): Codec<TypeOf<UnionSchema<MemberSchemaType>>> {
     return new UnionCodec(
       ...(schema.items.map((item) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         is: (value: unknown): value is any => item.is(value),
         codec: load(item),
       })) as UnionCodecInfoMap<MemberType>)
