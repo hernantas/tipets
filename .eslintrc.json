@@ -1,0 +1,16 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "project": ["**/tsconfig.json"]
+  },
+  "ignorePatterns": ["**/dist/**/*", "*.config.ts", "*.test.ts"],
+  "plugins": ["@typescript-eslint"]
+}
