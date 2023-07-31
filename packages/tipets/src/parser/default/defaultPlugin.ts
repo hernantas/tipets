@@ -1,4 +1,4 @@
-import { boolean } from '../../schema/boolean/boolean'
+import { boolean } from '../../schema'
 import { date } from '../../schema/date/date'
 import { number } from '../../schema/number/number'
 import { string } from '../../schema/string/string'

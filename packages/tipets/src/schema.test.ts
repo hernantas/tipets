@@ -1,5 +1,12 @@
-import { AnySchema, ArraySchema, Schema, any, array } from './schema'
-import { boolean } from './schema/boolean/boolean'
+import {
+  AnySchema,
+  ArraySchema,
+  BooleanSchema,
+  Schema,
+  any,
+  array,
+  boolean,
+} from './schema'
 import { date } from './schema/date/date'
 import { intersect } from './schema/intersect/intersect'
 import { literal } from './schema/literal/literal'
@@ -70,6 +77,23 @@ describe('Schema', () => {
 
     it('Instance checking', () => {
       expect(ArraySchema.is(schema)).toBe(true)
+    })
+  })
+
+  describe('Boolean Schema', () => {
+    const schema = boolean()
+
+    it('Type Guard', () => {
+      expect(schema.is(true)).toBe(true)
+      expect(schema.is(false)).toBe(true)
+      expect(schema.is(0)).toBe(false)
+      expect(schema.is(1)).toBe(false)
+      expect(schema.is('true')).toBe(false)
+      expect(schema.is('false')).toBe(false)
+    })
+
+    it('Instance checking', () => {
+      expect(BooleanSchema.is(schema)).toBe(true)
     })
   })
 })
