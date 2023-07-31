@@ -1,4 +1,4 @@
-import { MemberType } from '../../alias/MemberType'
+import { MemberType } from '../../type-alias'
 import { Schema } from '../../schema'
 import { MemberSchemaType } from '../../schema/MemberSchemaType'
 import { IntersectSchema } from '../../schema/intersect/IntersectSchema'

@@ -1,4 +1,4 @@
-import { MemberType } from '../../alias/MemberType'
+import { MemberType } from '../../type-alias'
 import { IntersectMap } from '../../schema/intersect/IntersectMap'
 import { Codec } from '../Codec'
 import { CodecMap } from '../CodecMap'

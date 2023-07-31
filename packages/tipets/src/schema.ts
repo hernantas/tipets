@@ -1,10 +1,9 @@
-import { Key } from './alias/Key'
-import { LiteralType } from './alias/LiteralType'
 import { ImmutableBuilder } from './builder'
 import { Signature } from './schema/Signature'
 import { ValidationRule } from './schema/ValidationRule'
 import { Violation } from './schema/Violation'
 import { Type, TypeOf, typeSymbol } from './type'
+import { Key, LiteralType } from './type-alias'
 
 /** Schema definition */
 export interface Definition<T> {

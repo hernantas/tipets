@@ -1,4 +1,4 @@
-import { TupleType } from '../../alias/TupleType'
+import { TupleType } from '../../type-alias'
 import { Schema } from '../../schema'
 import { TupleSchema } from '../../schema/tuple/TupleSchema'
 import { TupleSchemaType } from '../../schema/tuple/TupleSchemaType'

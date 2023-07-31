@@ -1,4 +1,4 @@
-import { MemberType } from '../../alias/MemberType'
+import { MemberType } from '../../type-alias'
 import { UnionMap } from '../union/UnionMap'
 import { IntersectOf } from './IntersectOf'
 

@@ -1,4 +1,4 @@
-import { LiteralType } from '../../alias/LiteralType'
+import { LiteralType } from '../../type-alias'
 import { Codec } from '../Codec'
 import { UnsupportedValueError } from '../UnsupportedValueError'
 

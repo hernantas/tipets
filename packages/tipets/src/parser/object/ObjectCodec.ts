@@ -1,4 +1,4 @@
-import { ObjectType } from '../../alias/ObjectType'
+import { ObjectType } from '../../type-alias'
 import { Codec } from '../Codec'
 import { CodecMap } from '../CodecMap'
 import { UnsupportedTypeError } from '../UnsupportedTypeError'

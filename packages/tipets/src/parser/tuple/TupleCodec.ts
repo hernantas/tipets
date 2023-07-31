@@ -1,4 +1,4 @@
-import { TupleType } from '../../alias/TupleType'
+import { TupleType } from '../../type-alias'
 import { Codec } from '../Codec'
 import { CodecMap } from '../CodecMap'
 import { UnsupportedTypeError } from '../UnsupportedTypeError'

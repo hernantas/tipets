@@ -1,4 +1,4 @@
-import { MemberType } from '../../alias/MemberType'
+import { MemberType } from '../../type-alias'
 import { UnionMap } from '../../schema/union/UnionMap'
 import { Codec } from '../Codec'
 import { UnsupportedTypeError } from '../UnsupportedTypeError'

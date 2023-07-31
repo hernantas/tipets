@@ -1,5 +1,4 @@
-import { Key } from '../alias/Key'
-import { ObjectType } from '../alias/ObjectType'
+import { Key, ObjectType } from '../type-alias'
 
 /** Contain violation information (what constraint is being violated) */
 export interface Violation {

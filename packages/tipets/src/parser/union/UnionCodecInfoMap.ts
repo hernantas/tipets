@@ -1,4 +1,4 @@
-import { MemberType } from '../../alias/MemberType'
+import { MemberType } from '../../type-alias'
 import { Codec } from '../Codec'
 
 export type UnionCodecInfoMap<T extends MemberType> = {
