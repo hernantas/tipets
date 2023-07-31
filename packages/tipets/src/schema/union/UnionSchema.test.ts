@@ -1,4 +1,4 @@
-import { number } from '../number/number'
+import { number } from '../../schema'
 import { string } from '../string/string'
 import { UnionSchema } from './UnionSchema'
 

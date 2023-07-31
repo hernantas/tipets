@@ -1,5 +1,4 @@
-import { boolean, date } from '../../schema'
-import { number } from '../../schema/number/number'
+import { boolean, date, number } from '../../schema'
 import { string } from '../../schema/string/string'
 import { ParserPluginFn } from '../ParserPluginFn'
 import { ArrayCodecLoader } from '../array/ArrayCodecLoader'

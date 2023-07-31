@@ -1,4 +1,4 @@
-import { number } from '../number/number'
+import { number } from '../../schema'
 import { object } from '../object/object'
 import { string } from '../string/string'
 import { IntersectSchema } from './IntersectSchema'

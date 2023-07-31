@@ -1,5 +1,4 @@
-import { boolean } from '../../schema'
-import { number } from '../number/number'
+import { boolean, number } from '../../schema'
 import { OptionalSchema } from '../optional/OptionalSchema'
 import { string } from '../string/string'
 import { ObjectSchema } from './ObjectSchema'
