@@ -9,6 +9,7 @@ import {
   NumberSchema,
   Schema,
   StringSchema,
+  TupleSchema,
   UndefinedSchema,
   UnknownSchema,
   _null,
@@ -21,12 +22,12 @@ import {
   nullable,
   number,
   string,
+  tuple,
   unknown,
 } from './schema'
 import { intersect } from './schema/intersect/intersect'
 import { object } from './schema/object/object'
 import { optional } from './schema/optional/optional'
-import { tuple } from './schema/tuple/tuple'
 import { union } from './schema/union/union'
 
 describe('Schema', () => {
@@ -386,6 +387,26 @@ describe('Schema', () => {
 
     it('Instance checking', () => {
       expect(StringSchema.is(schema)).toBe(true)
+    })
+  })
+
+  describe('Tuple Schema', () => {
+    const schema = tuple(string().length(4), string().length(6))
+
+    it('Type Guard', () => {
+      expect(schema.is(['Hello', 'World'])).toBe(true)
+      expect(schema.is(['Hello', 'World', '!!!'])).toBe(false)
+      expect(schema.is(['Hello'])).toBe(false)
+      expect(schema.is([])).toBe(false)
+    })
+
+    it('Validation', () => {
+      expect(schema.validate(['1234', '123456'])).toHaveLength(0)
+      expect(schema.validate(['1', '1'])).toHaveLength(2)
+    })
+
+    it('Instance checking', () => {
+      expect(TupleSchema.is(schema)).toBe(true)
     })
   })
 

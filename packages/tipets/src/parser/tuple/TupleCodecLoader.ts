@@ -1,7 +1,5 @@
 import { TupleType } from '../../type-alias'
-import { Schema } from '../../schema'
-import { TupleSchema } from '../../schema/tuple/TupleSchema'
-import { TupleSchemaType } from '../../schema/tuple/TupleSchemaType'
+import { Schema, TupleSchema, TupleSchemaType } from '../../schema'
 import { TypeOf } from '../../type'
 import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
