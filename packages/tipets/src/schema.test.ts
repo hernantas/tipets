@@ -1,5 +1,4 @@
-import { AnySchema, Schema, any } from './schema'
-import { array } from './schema/array/array'
+import { AnySchema, ArraySchema, Schema, any, array } from './schema'
 import { boolean } from './schema/boolean/boolean'
 import { date } from './schema/date/date'
 import { intersect } from './schema/intersect/intersect'
@@ -54,6 +53,23 @@ describe('Schema', () => {
 
     it('Instance checking', () => {
       expect(AnySchema.is(schema)).toBe(true)
+    })
+  })
+
+  describe('Array Schema', () => {
+    const schema = array(string())
+
+    it('Type Guard', () => {
+      expect(schema.is([])).toBe(true)
+      expect(schema.is(['ROBOT'])).toBe(true)
+      expect(schema.is(['false'])).toBe(true)
+      expect(schema.is(['0'])).toBe(true)
+      expect(schema.is([false])).toBe(false)
+      expect(schema.is([0])).toBe(false)
+    })
+
+    it('Instance checking', () => {
+      expect(ArraySchema.is(schema)).toBe(true)
     })
   })
 })
