@@ -1,6 +1,5 @@
-import { boolean, number } from '../../schema'
+import { boolean, number, string } from '../../schema'
 import { OptionalSchema } from '../optional/OptionalSchema'
-import { string } from '../string/string'
 import { ObjectSchema } from './ObjectSchema'
 
 describe('Object Schema', () => {

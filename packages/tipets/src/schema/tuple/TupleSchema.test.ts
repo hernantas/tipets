@@ -1,4 +1,4 @@
-import { string } from '../string/string'
+import { string } from '../../schema'
 import { TupleSchema } from './TupleSchema'
 
 describe('Tuple Schema', () => {

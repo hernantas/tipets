@@ -1,6 +1,5 @@
-import { number } from '../../schema'
+import { number, string } from '../../schema'
 import { object } from '../object/object'
-import { string } from '../string/string'
 import { IntersectSchema } from './IntersectSchema'
 import { intersect } from './intersect'
 

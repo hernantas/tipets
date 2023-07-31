@@ -1,5 +1,4 @@
-import { number } from '../../schema'
-import { string } from '../../schema/string/string'
+import { number, string } from '../../schema'
 import { NumberCodec } from '../number/NumberCodec'
 import { StringCodec } from '../string/StringCodec'
 import { UnionCodec } from './UnionCodec'

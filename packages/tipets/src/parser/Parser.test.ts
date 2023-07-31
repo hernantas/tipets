@@ -1,5 +1,4 @@
-import { array } from '../schema'
-import { string } from '../schema/string/string'
+import { array, string } from '../schema'
 import { Parser } from './Parser'
 import { ArrayCodecLoader } from './array/ArrayCodecLoader'
 import { StringCodec } from './string/StringCodec'

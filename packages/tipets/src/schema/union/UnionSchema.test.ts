@@ -1,5 +1,4 @@
-import { number } from '../../schema'
-import { string } from '../string/string'
+import { number, string } from '../../schema'
 import { UnionSchema } from './UnionSchema'
 
 describe('Union Schema', () => {
