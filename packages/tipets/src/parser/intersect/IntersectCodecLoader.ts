@@ -1,6 +1,5 @@
 import { MemberType } from '../../type-alias'
-import { IntersectSchema, Schema } from '../../schema'
-import { MemberSchemaType } from '../../schema/MemberSchemaType'
+import { IntersectSchema, MemberSchemaType, Schema } from '../../schema'
 import { TypeOf } from '../../type'
 import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'

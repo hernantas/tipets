@@ -1,10 +1,15 @@
 import { ImmutableBuilder } from './builder'
-import { MemberSchemaType } from './schema/MemberSchemaType'
 import { Signature } from './schema/Signature'
 import { ValidationRule } from './schema/ValidationRule'
 import { Violation } from './schema/Violation'
 import { Type, TypeMapOf, TypeOf, typeSymbol } from './type'
-import { Key, LiteralType, ObjectType, TupleType } from './type-alias'
+import {
+  Key,
+  LiteralType,
+  MemberType,
+  ObjectType,
+  TupleType,
+} from './type-alias'
 import { IntersectMap, Merge, UnionMap } from './type-helper'
 
 /** Schema definition */
@@ -89,6 +94,12 @@ export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>
     return this.set('rules', this.rules.concat(rule))
   }
 }
+
+export type MemberSchemaType = MemberType<Schema>
+
+export type ObjectSchemaType = ObjectType<Schema>
+
+export type TupleSchemaType = TupleType<Schema>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class AnySchema extends Schema<any> {
@@ -890,8 +901,6 @@ export function number(): NumberSchema {
   return NumberSchema.create()
 }
 
-export type ObjectSchemaType<T extends Schema = Schema> = ObjectType<T>
-
 export type OptionalSchemaMap<T extends ObjectSchemaType> = {
   [K in keyof T]: OptionalSchema<T[K]>
 }
@@ -1376,8 +1385,6 @@ export class StringSchema extends Schema<string> {
 export function string(): StringSchema {
   return StringSchema.create()
 }
-
-export type TupleSchemaType<T extends Schema = Schema> = TupleType<T>
 
 export interface TupleDefinition<T extends TupleSchemaType>
   extends Definition<TypeMapOf<T>> {

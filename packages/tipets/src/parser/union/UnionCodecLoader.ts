@@ -1,5 +1,4 @@
-import { Schema, UnionSchema } from '../../schema'
-import { MemberSchemaType } from '../../schema/MemberSchemaType'
+import { MemberSchemaType, Schema, UnionSchema } from '../../schema'
 import { TypeOf } from '../../type'
 import { MemberType } from '../../type-alias'
 import { Codec } from '../Codec'
