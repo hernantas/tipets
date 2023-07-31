@@ -1,5 +1,4 @@
-import { boolean } from '../../schema'
-import { date } from '../../schema/date/date'
+import { boolean, date } from '../../schema'
 import { number } from '../../schema/number/number'
 import { string } from '../../schema/string/string'
 import { ParserPluginFn } from '../ParserPluginFn'
