@@ -12,6 +12,7 @@ import {
   StringSchema,
   TupleSchema,
   UndefinedSchema,
+  UnionSchema,
   UnknownSchema,
   _null,
   _undefined,
@@ -25,11 +26,11 @@ import {
   optional,
   string,
   tuple,
+  union,
   unknown,
 } from './schema'
 import { intersect } from './schema/intersect/intersect'
 import { object } from './schema/object/object'
-import { union } from './schema/union/union'
 
 describe('Schema', () => {
   it('Schema.is', () => {
@@ -430,6 +431,27 @@ describe('Schema', () => {
 
     it('Instance checking', () => {
       expect(TupleSchema.is(schema)).toBe(true)
+    })
+  })
+
+  describe('Union Schema', () => {
+    const schema = union(string().length(5), number().min(100))
+
+    it('Type Guard', () => {
+      expect(schema.is('Hello')).toBe(true)
+      expect(schema.is(0)).toBe(true)
+      expect(schema.is(false)).toBe(false)
+    })
+
+    it('Validation', () => {
+      expect(schema.validate('Hello')).toHaveLength(0)
+      expect(schema.validate('Hell')).toHaveLength(1)
+      expect(schema.validate(100)).toHaveLength(0)
+      expect(schema.validate(99)).toHaveLength(1)
+    })
+
+    it('Instance checking', () => {
+      expect(UnionSchema.is(schema)).toBe(true)
     })
   })
 
