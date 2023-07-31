@@ -9,7 +9,9 @@ import {
   NumberSchema,
   Schema,
   StringSchema,
+  UndefinedSchema,
   _null,
+  _undefined,
   any,
   array,
   boolean,
@@ -23,7 +25,6 @@ import { intersect } from './schema/intersect/intersect'
 import { object } from './schema/object/object'
 import { optional } from './schema/optional/optional'
 import { tuple } from './schema/tuple/tuple'
-import { _undefined } from './schema/undefined/undefined'
 import { union } from './schema/union/union'
 import { unknown } from './schema/unknown/unknown'
 
@@ -384,6 +385,27 @@ describe('Schema', () => {
 
     it('Instance checking', () => {
       expect(StringSchema.is(schema)).toBe(true)
+    })
+  })
+
+  describe('Undefined Schema', () => {
+    const schema = _undefined()
+
+    it('Type Guard', () => {
+      expect(schema.is(undefined)).toBe(true)
+      expect(schema.is(true)).toBe(false)
+      expect(schema.is(false)).toBe(false)
+      expect(schema.is(0)).toBe(false)
+      expect(schema.is(1)).toBe(false)
+      expect(schema.is('true')).toBe(false)
+      expect(schema.is('false')).toBe(false)
+      expect(schema.is(null)).toBe(false)
+      expect(schema.is({})).toBe(false)
+      expect(schema.is([])).toBe(false)
+    })
+
+    it('Instance checking', () => {
+      expect(UndefinedSchema.is(schema)).toBe(true)
     })
   })
 })
