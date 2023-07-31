@@ -1,11 +1,10 @@
 import { ImmutableBuilder } from '../builder'
+import { Type, typeSymbol } from '../type'
 import { Definition } from './Definition'
 import { Signature } from './Signature'
-import { Type } from './Type'
 import { ValidationRule } from './ValidationRule'
 import { Violation } from './Violation'
 import { kindSymbol } from './kindSymbol'
-import { typeSymbol } from './typeSymbol'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>

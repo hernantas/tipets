@@ -1,5 +1,5 @@
 import { Schema } from '../../schema/Schema'
-import { TypeOf } from '../../schema/TypeOf'
+import { TypeOf } from '../../type'
 import { NullableSchema } from '../../schema/nullable/NullableSchema'
 import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'

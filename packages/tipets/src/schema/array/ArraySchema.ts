@@ -1,6 +1,6 @@
 import { Schema } from '../Schema'
 import { Signature } from '../Signature'
-import { TypeOf } from '../TypeOf'
+import { TypeOf } from '../../type'
 import { Violation } from '../Violation'
 import { kindSymbol } from '../kindSymbol'
 import { ArrayDefinition } from './ArrayDefinition'

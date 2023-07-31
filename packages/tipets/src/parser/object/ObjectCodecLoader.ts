@@ -1,5 +1,5 @@
 import { Schema } from '../../schema/Schema'
-import { TypeOf } from '../../schema/TypeOf'
+import { TypeOf } from '../../type'
 import { ObjectSchema } from '../../schema/object/ObjectSchema'
 import { ObjectSchemaType } from '../../schema/object/ObjectSchemaType'
 import { Codec } from '../Codec'

@@ -1,4 +1,4 @@
-import { TypeOf } from '../TypeOf'
+import { TypeOf } from '../../type'
 import { Violation } from '../Violation'
 import { Schema } from '../Schema'
 import { Signature } from '../Signature'
