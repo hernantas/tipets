@@ -1,5 +1,4 @@
-import { Schema } from './schema'
-import { any } from './schema/any/any'
+import { AnySchema, Schema, any } from './schema'
 import { array } from './schema/array/array'
 import { boolean } from './schema/boolean/boolean'
 import { date } from './schema/date/date'
@@ -35,5 +34,26 @@ describe('Schema', () => {
     expect(Schema.is(union(string(), number()))).toBe(true)
     expect(Schema.is(unknown())).toBe(true)
     expect(Schema.is(false)).toBe(false)
+  })
+
+  describe('Any Schema', () => {
+    const schema = any()
+
+    it('Type Guard', () => {
+      expect(schema.is(true)).toBe(true)
+      expect(schema.is(false)).toBe(true)
+      expect(schema.is(0)).toBe(true)
+      expect(schema.is(1)).toBe(true)
+      expect(schema.is('true')).toBe(true)
+      expect(schema.is('false')).toBe(true)
+      expect(schema.is(null)).toBe(true)
+      expect(schema.is(undefined)).toBe(true)
+      expect(schema.is({})).toBe(true)
+      expect(schema.is([])).toBe(true)
+    })
+
+    it('Instance checking', () => {
+      expect(AnySchema.is(schema)).toBe(true)
+    })
   })
 })
