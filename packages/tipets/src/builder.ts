@@ -1,6 +1,8 @@
 import { ConstructorType } from './alias/ConstructorType'
 import { ObjectType } from './alias/ObjectType'
-import { definitionSymbol } from './definitionSymbol'
+
+/** @internal */
+export const definitionSymbol = Symbol.for('definition')
 
 /**
  * Utility class that can build or modify definition object `<T>` in immutable

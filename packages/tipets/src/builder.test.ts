@@ -1,4 +1,4 @@
-import { ImmutableBuilder } from './ImmutableBuilder'
+import { ImmutableBuilder } from './builder'
 
 describe('Extendable', () => {
   it('Construct', () => {

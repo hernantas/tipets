@@ -1,4 +1,4 @@
-import { ImmutableBuilder } from '../ImmutableBuilder'
+import { ImmutableBuilder } from '../builder'
 import { Definition } from './Definition'
 import { Signature } from './Signature'
 import { Type } from './Type'
