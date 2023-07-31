@@ -3,6 +3,7 @@ import {
   ArraySchema,
   BooleanSchema,
   DateSchema,
+  IntersectSchema,
   LiteralSchema,
   NullSchema,
   NullableSchema,
@@ -20,6 +21,7 @@ import {
   array,
   boolean,
   date,
+  intersect,
   literal,
   nullable,
   number,
@@ -29,7 +31,6 @@ import {
   union,
   unknown,
 } from './schema'
-import { intersect } from './schema/intersect/intersect'
 import { object } from './schema/object/object'
 
 describe('Schema', () => {
@@ -228,6 +229,32 @@ describe('Schema', () => {
 
     it('Instance checking', () => {
       expect(NullableSchema.is(schema)).toBe(true)
+    })
+  })
+
+  describe('Intersect Schema', () => {
+    const schema = intersect(
+      object({ _string: string().length(5) }),
+      object({ _number: number().min(0) })
+    )
+
+    it('Type Guard', () => {
+      expect(schema.is({ _string: 'Hello', _number: 0 })).toBe(true)
+      expect(schema.is({ _string: 'Hello' })).toBe(false)
+      expect(schema.is({ _number: 0 })).toBe(false)
+
+      const impossible = intersect(string(), number())
+      expect(impossible.is('Hello')).toBe(false)
+      expect(impossible.is(0)).toBe(false)
+    })
+
+    it('Validation', () => {
+      expect(schema.validate({ _string: 'Hello', _number: 0 })).toHaveLength(0)
+      expect(schema.validate({ _string: 'Hell', _number: -1 })).toHaveLength(2)
+    })
+
+    it('Instance checking', () => {
+      expect(IntersectSchema.is(schema)).toBe(true)
     })
   })
 

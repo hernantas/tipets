@@ -5,7 +5,7 @@ import { ValidationRule } from './schema/ValidationRule'
 import { Violation } from './schema/Violation'
 import { Type, TypeMapOf, TypeOf, typeSymbol } from './type'
 import { Key, LiteralType, TupleType } from './type-alias'
-import { UnionMap } from './type-helper'
+import { IntersectMap, UnionMap } from './type-helper'
 
 /** Schema definition */
 export interface Definition<T> {
@@ -459,6 +459,86 @@ export class DateSchema extends Schema<Date> {
  */
 export function date(): DateSchema {
   return DateSchema.create()
+}
+
+export interface IntersectDefinition<T extends MemberSchemaType>
+  extends Definition<IntersectMap<TypeMapOf<T>>> {
+  readonly items: T
+}
+
+export class IntersectSchema<T extends MemberSchemaType> extends Schema<
+  IntersectMap<TypeMapOf<T>>,
+  IntersectDefinition<T>
+> {
+  public static readonly [kindSymbol]: string = 'intersect'
+
+  public override readonly [kindSymbol]: string = IntersectSchema[kindSymbol]
+
+  /**
+   * Check if given schema is instance of {@link IntersectSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link IntersectSchema}, false
+   *   otherwise
+   */
+  public static override is(
+    schema: Schema
+  ): schema is IntersectSchema<MemberSchemaType> {
+    return schema[kindSymbol] === IntersectSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link IntersectSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(items: MemberSchemaType): Signature {
+    return Signature.create('Intersect', ...items.map((item) => item.signature))
+  }
+
+  /**
+   * Create new instance of {@link IntersectSchema}
+   *
+   * @param items Member type schema
+   * @returns A new instance of {@link IntersectSchema}
+   */
+  public static create<T extends MemberSchemaType>(
+    ...items: T
+  ): IntersectSchema<T> {
+    return new IntersectSchema({
+      signature: IntersectSchema.signature(items),
+      items,
+    })
+  }
+
+  public get items(): T {
+    return this.get('items')
+  }
+
+  public override is(value: unknown): value is IntersectMap<TypeMapOf<T>> {
+    return this.items.reduce(
+      (result, schema) => result && schema.is(value),
+      true
+    )
+  }
+
+  public override validate(value: IntersectMap<TypeMapOf<T>>): Violation[] {
+    return super
+      .validate(value)
+      .concat(this.items.flatMap((item) => item.validate(value)))
+  }
+}
+
+/**
+ * Create new instance of {@link IntersectSchema}
+ *
+ * @param items Member type schema
+ * @returns A new instance of {@link IntersectSchema}
+ */
+export function intersect<T extends MemberSchemaType>(
+  ...items: T
+): IntersectSchema<T> {
+  return IntersectSchema.create(...items)
 }
 
 export interface LiteralDefinition<T extends LiteralType>
