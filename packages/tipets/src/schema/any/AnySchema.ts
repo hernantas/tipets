@@ -1,6 +1,5 @@
-import { Schema } from '../Schema'
+import { Schema, kindSymbol } from '../../schema'
 import { Signature } from '../Signature'
-import { kindSymbol } from '../kindSymbol'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class AnySchema extends Schema<any> {

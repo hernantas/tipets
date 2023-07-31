@@ -1,8 +1,7 @@
-import { Schema } from '../Schema'
-import { Signature } from '../Signature'
+import { Schema, kindSymbol } from '../../schema'
 import { TypeMapOf } from '../../type'
+import { Signature } from '../Signature'
 import { Violation } from '../Violation'
-import { kindSymbol } from '../kindSymbol'
 import { TupleDefinition } from './TupleDefinition'
 import { TupleSchemaType } from './TupleSchemaType'
 

@@ -1,6 +1,5 @@
-import { Schema } from '../Schema'
+import { Schema, kindSymbol } from '../../schema'
 import { Signature } from '../Signature'
-import { kindSymbol } from '../kindSymbol'
 
 export class BooleanSchema extends Schema<boolean> {
   public static readonly [kindSymbol]: string = 'boolean'

@@ -1,8 +1,8 @@
+import { Schema, kindSymbol } from '../../schema'
 import { TypeOf } from '../../type'
-import { Violation } from '../Violation'
-import { Schema } from '../Schema'
 import { Signature } from '../Signature'
-import { kindSymbol } from '../kindSymbol'
+import { Violation } from '../Violation'
+
 import { NullableDefinition } from './NullableDefinition'
 
 export class NullableSchema<T extends Schema> extends Schema<

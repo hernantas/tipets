@@ -1,10 +1,22 @@
-import { ImmutableBuilder } from '../builder'
-import { Type, typeSymbol } from '../type'
-import { Definition } from './Definition'
-import { Signature } from './Signature'
-import { ValidationRule } from './ValidationRule'
-import { Violation } from './Violation'
-import { kindSymbol } from './kindSymbol'
+import { Key } from './alias/Key'
+import { ImmutableBuilder } from './builder'
+import { Signature } from './schema/Signature'
+import { ValidationRule } from './schema/ValidationRule'
+import { Violation } from './schema/Violation'
+import { Type, typeSymbol } from './type'
+
+/** Schema definition */
+export interface Definition<T> {
+  /** Signature for current definition */
+  readonly signature: Signature
+
+  /** List of rules for current schema */
+  readonly rules?: ValidationRule<T>[]
+
+  readonly [key: Key]: unknown
+}
+
+export const kindSymbol = Symbol.for('kind')
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>

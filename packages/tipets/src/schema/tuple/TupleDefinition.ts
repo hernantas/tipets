@@ -1,5 +1,5 @@
-import { Definition } from '../Definition'
-import { TypeMapOf } from '../TypeMapOf'
+import { Definition } from '../../schema'
+import { TypeMapOf } from '../../type'
 import { TupleSchemaType } from './TupleSchemaType'
 
 export interface TupleDefinition<T extends TupleSchemaType>

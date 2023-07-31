@@ -1,4 +1,4 @@
-import { Schema } from '../Schema'
+import { Schema } from '../../schema'
 import { OptionalSchema } from './OptionalSchema'
 
 /**

@@ -1,7 +1,6 @@
 import { LiteralType } from '../../alias/LiteralType'
-import { Schema } from '../Schema'
+import { Schema, kindSymbol } from '../../schema'
 import { Signature } from '../Signature'
-import { kindSymbol } from '../kindSymbol'
 import { LiteralDefinition } from './LiteralDefinition'
 
 export class LiteralSchema<T extends LiteralType> extends Schema<

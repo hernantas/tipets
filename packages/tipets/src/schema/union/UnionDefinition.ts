@@ -1,6 +1,7 @@
-import { Definition } from '../Definition'
+import { Definition } from '../../schema'
+import { TypeMapOf } from '../../type'
 import { MemberSchemaType } from '../MemberSchemaType'
-import { TypeMapOf } from '../TypeMapOf'
+
 import { UnionMap } from './UnionMap'
 
 export interface UnionDefinition<T extends MemberSchemaType>

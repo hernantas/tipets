@@ -1,9 +1,8 @@
-import { MemberSchemaType } from '../MemberSchemaType'
-import { Schema } from '../Schema'
-import { Signature } from '../Signature'
+import { Schema, kindSymbol } from '../../schema'
 import { TypeMapOf } from '../../type'
+import { MemberSchemaType } from '../MemberSchemaType'
+import { Signature } from '../Signature'
 import { Violation } from '../Violation'
-import { kindSymbol } from '../kindSymbol'
 import { IntersectDefinition } from './IntersectDefinition'
 import { IntersectMap } from './IntersectMap'
 

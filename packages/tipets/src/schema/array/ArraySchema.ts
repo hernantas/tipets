@@ -1,8 +1,8 @@
-import { Schema } from '../Schema'
-import { Signature } from '../Signature'
+import { Schema, kindSymbol } from '../../schema'
 import { TypeOf } from '../../type'
+import { Signature } from '../Signature'
 import { Violation } from '../Violation'
-import { kindSymbol } from '../kindSymbol'
+
 import { ArrayDefinition } from './ArrayDefinition'
 
 export class ArraySchema<S extends Schema> extends Schema<

@@ -1,4 +1,4 @@
-import { Schema } from '../schema/Schema'
+import { Schema } from '../schema'
 import { Codec } from './Codec'
 
 export interface LoadCodecFn {

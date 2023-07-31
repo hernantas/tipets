@@ -1,6 +1,5 @@
-import { Definition } from '../Definition'
-import { Schema } from '../Schema'
-import { TypeOf } from '../TypeOf'
+import { Definition, Schema } from '../../schema'
+import { TypeOf } from '../../type'
 
 export interface ArrayDefinition<S extends Schema>
   extends Definition<TypeOf<S>[]> {
