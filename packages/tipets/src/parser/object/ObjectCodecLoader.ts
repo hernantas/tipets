@@ -1,6 +1,4 @@
-import { Schema } from '../../schema'
-import { ObjectSchema } from '../../schema/object/ObjectSchema'
-import { ObjectSchemaType } from '../../schema/object/ObjectSchemaType'
+import { ObjectSchema, ObjectSchemaType, Schema } from '../../schema'
 import { TypeOf } from '../../type'
 import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
