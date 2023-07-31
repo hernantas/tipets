@@ -808,6 +808,77 @@ export function number(): NumberSchema {
   return NumberSchema.create()
 }
 
+export interface OptionalDefinition<T extends Schema>
+  extends Definition<TypeOf<T> | undefined> {
+  readonly type: T
+}
+
+export class OptionalSchema<T extends Schema> extends Schema<
+  TypeOf<T> | undefined,
+  OptionalDefinition<T>
+> {
+  public static readonly [kindSymbol]: string = 'optional'
+
+  public override readonly [kindSymbol]: string = OptionalSchema[kindSymbol]
+
+  /**
+   * Check if given schema is instance of {@link OptionalSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link OptionalSchema}, false
+   *   otherwise
+   */
+  public static override is(schema: Schema): schema is OptionalSchema<Schema> {
+    return schema[kindSymbol] === OptionalSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link OptionalSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(type: Schema): Signature {
+    return Signature.create('Optional', type.signature)
+  }
+
+  /**
+   * Create new instance of {@link OptionalSchema}
+   *
+   * @param type Inner schema type
+   * @returns A new instance of {@link OptionalSchema}
+   */
+  public static create<T extends Schema>(type: T): OptionalSchema<T> {
+    return new OptionalSchema({
+      signature: OptionalSchema.signature(type),
+      type,
+    })
+  }
+
+  public get type(): T {
+    return this.get('type')
+  }
+
+  public override is(value: unknown): value is TypeOf<T> | undefined {
+    return value === undefined || this.type.is(value)
+  }
+
+  public override validate(value: TypeOf<T> | undefined): Violation[] {
+    return super
+      .validate(value)
+      .concat(...(this.type.is(value) ? this.type.validate(value) : []))
+  }
+}
+
+/**
+ * Create new instance of {@link OptionalSchema}
+ *
+ * @param type Inner schema type
+ * @returns A new instance of {@link OptionalSchema}
+ */
+export function optional<T extends Schema>(type: T): OptionalSchema<T> {
+  return OptionalSchema.create(type)
+}
+
 const regex = {
   alphanumeric: /^[a-zA-Z0-9]+$/,
   base64: /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/,

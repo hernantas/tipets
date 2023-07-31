@@ -1,9 +1,8 @@
-import { Schema, kindSymbol } from '../../schema'
+import { Schema, kindSymbol, optional } from '../../schema'
 import { TypeMapOf } from '../../type'
 import { Merge } from '../../type-helper'
 import { Signature } from '../Signature'
 import { Violation } from '../Violation'
-import { OptionalSchema } from '../optional/OptionalSchema'
 import { OptionalSchemaMap } from '../optional/OptionalSchemaMap'
 import { ObjectDefinition } from './ObjectDefinition'
 import { ObjectSchemaType } from './ObjectSchemaType'
@@ -110,7 +109,7 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
       Object.fromEntries(
         Object.entries(this.properties).map(([key, schema]) => [
           key,
-          OptionalSchema.create(schema),
+          optional(schema),
         ])
       ) as unknown as OptionalSchemaMap<T>
     )

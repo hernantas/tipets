@@ -1,5 +1,4 @@
-import { Schema } from '../../schema'
-import { OptionalSchema } from '../../schema/optional/OptionalSchema'
+import { OptionalSchema, Schema } from '../../schema'
 import { TypeOf } from '../../type'
 import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'

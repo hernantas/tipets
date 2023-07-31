@@ -7,6 +7,7 @@ import {
   NullSchema,
   NullableSchema,
   NumberSchema,
+  OptionalSchema,
   Schema,
   StringSchema,
   TupleSchema,
@@ -21,13 +22,13 @@ import {
   literal,
   nullable,
   number,
+  optional,
   string,
   tuple,
   unknown,
 } from './schema'
 import { intersect } from './schema/intersect/intersect'
 import { object } from './schema/object/object'
-import { optional } from './schema/optional/optional'
 import { union } from './schema/union/union'
 
 describe('Schema', () => {
@@ -317,6 +318,28 @@ describe('Schema', () => {
 
     it('Instance checking', () => {
       expect(NumberSchema.is(schema)).toBe(true)
+    })
+  })
+
+  describe('Optional Schema', () => {
+    const schema = optional(string().length(5).min(5))
+
+    it('Type Guard', () => {
+      expect(schema.is('Hello')).toBe(true)
+      expect(schema.is(undefined)).toBe(true)
+      expect(schema.is(null)).toBe(false)
+      expect(schema.is(0)).toBe(false)
+      expect(schema.is(false)).toBe(false)
+    })
+
+    it('Validation', () => {
+      expect(schema.validate('Hello')).toHaveLength(0)
+      expect(schema.validate(undefined)).toHaveLength(0)
+      expect(schema.validate('Hell')).toHaveLength(2)
+    })
+
+    it('Instance checking', () => {
+      expect(OptionalSchema.is(schema)).toBe(true)
     })
   })
 
