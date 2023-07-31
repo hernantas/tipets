@@ -1,4 +1,5 @@
 import { Key } from './alias/Key'
+import { LiteralType } from './alias/LiteralType'
 import { ImmutableBuilder } from './builder'
 import { Signature } from './schema/Signature'
 import { ValidationRule } from './schema/ValidationRule'
@@ -457,4 +458,72 @@ export class DateSchema extends Schema<Date> {
  */
 export function date(): DateSchema {
   return DateSchema.create()
+}
+
+export interface LiteralDefinition<T extends LiteralType>
+  extends Definition<T> {
+  /** Literal value */
+  readonly value: T
+}
+
+export class LiteralSchema<T extends LiteralType> extends Schema<
+  T,
+  LiteralDefinition<T>
+> {
+  public static readonly [kindSymbol]: string = 'literal'
+
+  public override readonly [kindSymbol]: string = LiteralSchema[kindSymbol]
+
+  /**
+   * Check if given schema is instance of {@link LiteralSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link LiteralSchema}, false
+   *   otherwise
+   */
+  public static override is(
+    schema: Schema
+  ): schema is LiteralSchema<LiteralType> {
+    return schema[kindSymbol] === LiteralSchema[kindSymbol]
+  }
+
+  /**
+   * Create new signature for {@link LiteralSchema}
+   *
+   * @returns A new signature instance
+   */
+  public static signature(value: LiteralType): Signature {
+    return Signature.create(`'${value.toString()}'`)
+  }
+
+  /**
+   * Create new instance of {@link LiteralSchema}
+   *
+   * @param value Literal value of schema
+   * @returns A new instance of {@link LiteralSchema}
+   */
+  public static create<T extends LiteralType>(value: T): LiteralSchema<T> {
+    return new LiteralSchema({
+      signature: LiteralSchema.signature(value),
+      value,
+    })
+  }
+
+  public get value(): T {
+    return this.get('value')
+  }
+
+  public override is(value: unknown): value is T {
+    return this.value === value
+  }
+}
+
+/**
+ * Create new instance of {@link LiteralSchema}
+ *
+ * @param value Literal value of schema
+ * @returns A new instance of {@link LiteralSchema}
+ */
+export function literal<T extends LiteralType>(value: T): LiteralSchema<T> {
+  return LiteralSchema.create(value)
 }

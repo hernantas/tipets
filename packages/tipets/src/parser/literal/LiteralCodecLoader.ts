@@ -1,6 +1,5 @@
 import { LiteralType } from '../../alias/LiteralType'
-import { Schema } from '../../schema'
-import { LiteralSchema } from '../../schema/literal/LiteralSchema'
+import { LiteralSchema, Schema } from '../../schema'
 import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
 import { LiteralCodec } from './LiteralCodec'
