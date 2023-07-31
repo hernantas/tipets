@@ -10,6 +10,7 @@ import {
   Schema,
   StringSchema,
   UndefinedSchema,
+  UnknownSchema,
   _null,
   _undefined,
   any,
@@ -20,13 +21,13 @@ import {
   nullable,
   number,
   string,
+  unknown,
 } from './schema'
 import { intersect } from './schema/intersect/intersect'
 import { object } from './schema/object/object'
 import { optional } from './schema/optional/optional'
 import { tuple } from './schema/tuple/tuple'
 import { union } from './schema/union/union'
-import { unknown } from './schema/unknown/unknown'
 
 describe('Schema', () => {
   it('Schema.is', () => {
@@ -406,6 +407,27 @@ describe('Schema', () => {
 
     it('Instance checking', () => {
       expect(UndefinedSchema.is(schema)).toBe(true)
+    })
+  })
+
+  describe('Unknown Schema', () => {
+    const schema = unknown()
+
+    it('Type Guard', () => {
+      expect(schema.is(true)).toBe(true)
+      expect(schema.is(false)).toBe(true)
+      expect(schema.is(0)).toBe(true)
+      expect(schema.is(1)).toBe(true)
+      expect(schema.is('true')).toBe(true)
+      expect(schema.is('false')).toBe(true)
+      expect(schema.is(null)).toBe(true)
+      expect(schema.is(undefined)).toBe(true)
+      expect(schema.is({})).toBe(true)
+      expect(schema.is([])).toBe(true)
+    })
+
+    it('Instance checking', () => {
+      expect(UnknownSchema.is(schema)).toBe(true)
     })
   })
 })
