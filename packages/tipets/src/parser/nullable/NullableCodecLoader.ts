@@ -1,5 +1,4 @@
-import { Schema } from '../../schema'
-import { NullableSchema } from '../../schema/nullable/NullableSchema'
+import { NullableSchema, Schema } from '../../schema'
 import { TypeOf } from '../../type'
 import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'

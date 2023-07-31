@@ -5,6 +5,7 @@ import {
   DateSchema,
   LiteralSchema,
   NullSchema,
+  NullableSchema,
   Schema,
   _null,
   any,
@@ -12,9 +13,9 @@ import {
   boolean,
   date,
   literal,
+  nullable,
 } from './schema'
 import { intersect } from './schema/intersect/intersect'
-import { nullable } from './schema/nullable/nullable'
 import { number } from './schema/number/number'
 import { object } from './schema/object/object'
 import { optional } from './schema/optional/optional'
@@ -198,6 +199,28 @@ describe('Schema', () => {
 
     it('Instance checking', () => {
       expect(NullSchema.is(schema)).toBe(true)
+    })
+  })
+
+  describe('Nullable Schema', () => {
+    const schema = nullable(string().length(5).min(5))
+
+    it('Type Guard', () => {
+      expect(schema.is('Hello')).toBe(true)
+      expect(schema.is(null)).toBe(true)
+      expect(schema.is(undefined)).toBe(false)
+      expect(schema.is(0)).toBe(false)
+      expect(schema.is(false)).toBe(false)
+    })
+
+    it('Validation', () => {
+      expect(schema.validate('Hello')).toHaveLength(0)
+      expect(schema.validate(null)).toHaveLength(0)
+      expect(schema.validate('Hell')).toHaveLength(2)
+    })
+
+    it('Instance checking', () => {
+      expect(NullableSchema.is(schema)).toBe(true)
     })
   })
 })
