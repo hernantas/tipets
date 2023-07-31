@@ -1,5 +1,5 @@
 import { MemberType } from '../../type-alias'
-import { IntersectMap } from '../../schema/intersect/IntersectMap'
+import { IntersectMap } from '../../type-helper'
 import { Codec } from '../Codec'
 import { CodecMap } from '../CodecMap'
 

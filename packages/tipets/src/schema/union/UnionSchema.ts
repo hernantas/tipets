@@ -1,10 +1,10 @@
 import { Schema, kindSymbol } from '../../schema'
 import { TypeMapOf } from '../../type'
+import { UnionMap } from '../../type-helper'
 import { MemberSchemaType } from '../MemberSchemaType'
 import { Signature } from '../Signature'
 import { Violation } from '../Violation'
 import { UnionDefinition } from './UnionDefinition'
-import { UnionMap } from './UnionMap'
 
 export class UnionSchema<T extends MemberSchemaType> extends Schema<
   UnionMap<TypeMapOf<T>>,

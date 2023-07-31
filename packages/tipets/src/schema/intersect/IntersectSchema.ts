@@ -1,10 +1,10 @@
 import { Schema, kindSymbol } from '../../schema'
 import { TypeMapOf } from '../../type'
+import { IntersectMap } from '../../type-helper'
 import { MemberSchemaType } from '../MemberSchemaType'
 import { Signature } from '../Signature'
 import { Violation } from '../Violation'
 import { IntersectDefinition } from './IntersectDefinition'
-import { IntersectMap } from './IntersectMap'
 
 export class IntersectSchema<T extends MemberSchemaType> extends Schema<
   IntersectMap<TypeMapOf<T>>,

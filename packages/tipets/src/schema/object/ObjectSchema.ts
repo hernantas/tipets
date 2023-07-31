@@ -1,6 +1,6 @@
-import { Merge } from '../../alias/Merge'
 import { Schema, kindSymbol } from '../../schema'
 import { TypeMapOf } from '../../type'
+import { Merge } from '../../type-helper'
 import { Signature } from '../Signature'
 import { Violation } from '../Violation'
 import { OptionalSchema } from '../optional/OptionalSchema'
