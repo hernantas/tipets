@@ -1,9 +1,8 @@
+import { ArrayCodec, Codec } from '../../codec'
 import { ArraySchema, Schema } from '../../schema'
 import { TypeOf } from '../../type'
-import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
 import { LoadCodecFn } from '../LoadCodecFn'
-import { ArrayCodec } from './ArrayCodec'
 
 export class ArrayCodecLoader implements CodecLoader<ArraySchema<Schema>> {
   public is(schema: Schema): schema is ArraySchema<Schema> {

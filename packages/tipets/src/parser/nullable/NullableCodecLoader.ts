@@ -1,9 +1,8 @@
+import { Codec, NullableCodec } from '../../codec'
 import { NullableSchema, Schema } from '../../schema'
 import { TypeOf } from '../../type'
-import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
 import { LoadCodecFn } from '../LoadCodecFn'
-import { NullableCodec } from './NullableCodec'
 
 export class NullableCodecLoader
   implements CodecLoader<NullableSchema<Schema>>

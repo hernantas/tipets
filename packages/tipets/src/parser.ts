@@ -1,10 +1,9 @@
+import { Codec, DefaultCodec } from './codec'
 import { UnsupportedTypeError, UnsupportedValueError } from './error'
-import { Codec } from './parser/Codec'
 import { CodecLoader } from './parser/CodecLoader'
 import { LoadCodecFn } from './parser/LoadCodecFn'
 import { ParserPluginFn } from './parser/ParserPluginFn'
 import { defaultPlugin } from './parser/default/defaultPlugin'
-import { loadDefaultCodec } from './parser/default/loadDefaultCodec'
 import { Schema } from './schema'
 import { TypeOf } from './type'
 import { Violation } from './violation'
@@ -35,7 +34,8 @@ export class Parser {
   }
 
   private constructor(
-    private readonly fallbackLoadCodec: LoadCodecFn = loadDefaultCodec
+    private readonly fallbackLoadCodec: LoadCodecFn = (schema) =>
+      new DefaultCodec(schema)
   ) {}
 
   public addCodec<S extends Schema>(schema: S, codec: Codec<TypeOf<S>>): this {

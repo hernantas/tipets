@@ -1,11 +1,9 @@
+import { Codec, CodecMap, TupleCodec } from '../../codec'
 import { Schema, TupleSchema, TupleSchemaType } from '../../schema'
 import { TypeOf } from '../../type'
 import { TupleType } from '../../type-alias'
-import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
-import { CodecMap } from '../CodecMap'
 import { LoadCodecFn } from '../LoadCodecFn'
-import { TupleCodec } from './TupleCodec'
 
 export class TupleCodecLoader
   implements CodecLoader<TupleSchema<TupleSchemaType>>

@@ -1,6 +1,6 @@
+import { StringCodec } from './codec'
 import { Parser } from './parser'
 import { ArrayCodecLoader } from './parser/array/ArrayCodecLoader'
-import { StringCodec } from './parser/string/StringCodec'
 import { array, string } from './schema'
 
 describe('Parser', () => {

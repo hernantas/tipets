@@ -1,9 +1,8 @@
+import { Codec, OptionalCodec } from '../../codec'
 import { OptionalSchema, Schema } from '../../schema'
 import { TypeOf } from '../../type'
-import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
 import { LoadCodecFn } from '../LoadCodecFn'
-import { OptionalCodec } from './OptionalCodec'
 
 export class OptionalCodecLoader
   implements CodecLoader<OptionalSchema<Schema>>

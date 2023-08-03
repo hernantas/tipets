@@ -1,11 +1,9 @@
+import { Codec, CodecMap, IntersectCodec } from '../../codec'
 import { IntersectSchema, MemberSchemaType, Schema } from '../../schema'
 import { TypeOf } from '../../type'
 import { MemberType } from '../../type-alias'
-import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
-import { CodecMap } from '../CodecMap'
 import { LoadCodecFn } from '../LoadCodecFn'
-import { IntersectCodec } from './IntersectCodec'
 
 export class IntersectCodecLoader
   implements CodecLoader<IntersectSchema<MemberSchemaType>>

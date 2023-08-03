@@ -1,11 +1,9 @@
+import { Codec, UnionCodec, UnionCodecInfoMap } from '../../codec'
 import { MemberSchemaType, Schema, UnionSchema } from '../../schema'
 import { TypeOf } from '../../type'
 import { MemberType } from '../../type-alias'
-import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
 import { LoadCodecFn } from '../LoadCodecFn'
-import { UnionCodec } from './UnionCodec'
-import { UnionCodecInfoMap } from './UnionCodecInfoMap'
 
 export class UnionCodecLoader
   implements CodecLoader<UnionSchema<MemberSchemaType>>

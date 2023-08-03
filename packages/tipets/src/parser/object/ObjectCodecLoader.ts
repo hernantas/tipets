@@ -1,9 +1,8 @@
+import { Codec, ObjectCodec } from '../../codec'
 import { ObjectSchema, ObjectSchemaType, Schema } from '../../schema'
 import { TypeOf } from '../../type'
-import { Codec } from '../Codec'
 import { CodecLoader } from '../CodecLoader'
 import { LoadCodecFn } from '../LoadCodecFn'
-import { ObjectCodec } from './ObjectCodec'
 
 export class ObjectCodecLoader
   implements CodecLoader<ObjectSchema<ObjectSchemaType>>
