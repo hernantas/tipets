@@ -2,11 +2,11 @@ import { ImmutableBuilder } from './builder'
 import { Signature } from './signature'
 import { Type, TypeMapOf, TypeOf, typeSymbol } from './type'
 import {
-    Key,
-    LiteralType,
-    MemberType,
-    ObjectType,
-    TupleType,
+  Key,
+  LiteralType,
+  MemberType,
+  ObjectType,
+  TupleType,
 } from './type-alias'
 import { IntersectMap, Merge, UnionMap } from './type-helper'
 import { ValidationRule } from './validation'
