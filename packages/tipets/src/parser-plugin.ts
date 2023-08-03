@@ -1,4 +1,4 @@
-import { BooleanCodec, DateCodec, NumberCodec, StringCodec } from '../../codec'
+import { BooleanCodec, DateCodec, NumberCodec, StringCodec } from './codec'
 import {
   ArrayCodecLoader,
   IntersectCodecLoader,
@@ -8,9 +8,13 @@ import {
   OptionalCodecLoader,
   TupleCodecLoader,
   UnionCodecLoader,
-} from '../../codec-loader'
-import { boolean, date, number, string } from '../../schema'
-import { ParserPluginFn } from '../ParserPluginFn'
+} from './codec-loader'
+import { Parser } from './parser'
+import { boolean, date, number, string } from './schema'
+
+export interface ParserPluginFn {
+  (parser: Parser): void
+}
 
 export const defaultPlugin: ParserPluginFn = (parser) =>
   parser
