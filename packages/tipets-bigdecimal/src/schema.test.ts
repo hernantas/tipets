@@ -1,5 +1,5 @@
 import { Big } from 'bigdecimal.js'
-import { BigDecimalSchema } from './BigDecimalSchema'
+import { BigDecimalSchema } from './schema'
 
 describe('BigDecimalSchema', () => {
   const schema = BigDecimalSchema.create()

@@ -1,4 +1,3 @@
-export * from './BigDecimalCodec'
-export * from './BigDecimalSchema'
-export * from './big'
-export * from './bigdecimalPlugin'
+export * from './codec'
+export * from './plugin'
+export * from './schema'

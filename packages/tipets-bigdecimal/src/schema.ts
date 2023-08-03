@@ -1,14 +1,14 @@
 import { BigDecimal } from 'bigdecimal.js'
-import { Schema, kindSymbol, Signature } from 'tipets'
+import { Schema, Signature } from 'tipets'
 
 export class BigDecimalSchema extends Schema<BigDecimal> {
-  public static readonly [kindSymbol]: string = 'big-decimal'
+  public static readonly kind: string = 'big-decimal'
 
   private static readonly instance = new BigDecimalSchema({
     signature: BigDecimalSchema.signature(),
   })
 
-  public override readonly [kindSymbol]: string = BigDecimalSchema[kindSymbol]
+  public override readonly kind: string = BigDecimalSchema.kind
 
   /**
    * Check if given schema is instance of {@link BigDecimalSchema}
@@ -18,7 +18,7 @@ export class BigDecimalSchema extends Schema<BigDecimal> {
    *   otherwise
    */
   public static override is(schema: Schema): schema is BigDecimalSchema {
-    return schema[kindSymbol] === BigDecimalSchema[kindSymbol]
+    return schema.kind === BigDecimalSchema.kind
   }
 
   /**
@@ -150,4 +150,13 @@ export class BigDecimalSchema extends Schema<BigDecimal> {
       message,
     })
   }
+}
+
+/**
+ * Create new instance of {@link BigDecimalSchema}
+ *
+ * @returns A new instance of {@link BigDecimalSchema}
+ */
+export function big(): BigDecimalSchema {
+  return BigDecimalSchema.create()
 }

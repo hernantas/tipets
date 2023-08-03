@@ -1,5 +1,5 @@
 import { Big } from 'bigdecimal.js'
-import { BigDecimalCodec } from './BigDecimalCodec'
+import { BigDecimalCodec } from './codec'
 
 describe('BigDecimal Codec', () => {
   const codec = new BigDecimalCodec()

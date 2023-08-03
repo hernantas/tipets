@@ -1,6 +1,6 @@
 import { ParserPluginFn } from 'tipets'
-import { BigDecimalCodec } from './BigDecimalCodec'
-import { big } from './big'
+import { BigDecimalCodec } from './codec'
+import { big } from './schema'
 
 export const bigdecimalPlugin: ParserPluginFn = (parser) => {
   parser.addCodec(big(), new BigDecimalCodec())
