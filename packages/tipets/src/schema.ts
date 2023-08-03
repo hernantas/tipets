@@ -1,6 +1,5 @@
 import { ImmutableBuilder } from './builder'
 import { Signature } from './schema/Signature'
-import { ValidationRule } from './schema/ValidationRule'
 import { Type, TypeMapOf, TypeOf, typeSymbol } from './type'
 import {
   Key,
@@ -10,6 +9,7 @@ import {
   TupleType,
 } from './type-alias'
 import { IntersectMap, Merge, UnionMap } from './type-helper'
+import { ValidationRule } from './validation'
 import { Violation } from './violation'
 
 /** Schema definition */
