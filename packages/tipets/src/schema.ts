@@ -1,5 +1,5 @@
 import { ImmutableBuilder } from './builder'
-import { Signature } from './schema/Signature'
+import { Signature } from './signature'
 import { Type, TypeMapOf, TypeOf, typeSymbol } from './type'
 import {
   Key,

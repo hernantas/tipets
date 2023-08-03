@@ -1,4 +1,4 @@
-import { Signature } from './Signature'
+import { Signature } from './signature'
 
 describe('Signature', () => {
   it('Empty Class', () => {
