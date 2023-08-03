@@ -1,7 +1,6 @@
 import { Codec, DefaultCodec } from './codec'
+import { CodecLoader, LoadCodecFn } from './codec-loader'
 import { UnsupportedTypeError, UnsupportedValueError } from './error'
-import { CodecLoader } from './parser/CodecLoader'
-import { LoadCodecFn } from './parser/LoadCodecFn'
 import { ParserPluginFn } from './parser/ParserPluginFn'
 import { defaultPlugin } from './parser/default/defaultPlugin'
 import { Schema } from './schema'

@@ -1,14 +1,16 @@
 import { BooleanCodec, DateCodec, NumberCodec, StringCodec } from '../../codec'
+import {
+  ArrayCodecLoader,
+  IntersectCodecLoader,
+  LiteralCodecLoader,
+  NullableCodecLoader,
+  ObjectCodecLoader,
+  OptionalCodecLoader,
+  TupleCodecLoader,
+  UnionCodecLoader,
+} from '../../codec-loader'
 import { boolean, date, number, string } from '../../schema'
 import { ParserPluginFn } from '../ParserPluginFn'
-import { ArrayCodecLoader } from '../array/ArrayCodecLoader'
-import { IntersectCodecLoader } from '../intersect/IntersectCodecLoader'
-import { LiteralCodecLoader } from '../literal/LiteralCodecLoader'
-import { NullableCodecLoader } from '../nullable/NullableCodecLoader'
-import { ObjectCodecLoader } from '../object/ObjectCodecLoader'
-import { OptionalCodecLoader } from '../optional/OptionalCodecLoader'
-import { TupleCodecLoader } from '../tuple/TupleCodecLoader'
-import { UnionCodecLoader } from '../union/UnionCodecLoader'
 
 export const defaultPlugin: ParserPluginFn = (parser) =>
   parser
