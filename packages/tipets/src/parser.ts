@@ -1,13 +1,25 @@
-import { UnsupportedTypeError, UnsupportedValueError } from '../error'
-import { Schema } from '../schema'
-import { TypeOf } from '../type'
-import { Codec } from './Codec'
-import { CodecLoader } from './CodecLoader'
-import { LoadCodecFn } from './LoadCodecFn'
-import { ParserPluginFn } from './ParserPluginFn'
-import { Result } from './Result'
-import { defaultPlugin } from './default/defaultPlugin'
-import { loadDefaultCodec } from './default/loadDefaultCodec'
+import { UnsupportedTypeError, UnsupportedValueError } from './error'
+import { Codec } from './parser/Codec'
+import { CodecLoader } from './parser/CodecLoader'
+import { LoadCodecFn } from './parser/LoadCodecFn'
+import { ParserPluginFn } from './parser/ParserPluginFn'
+import { defaultPlugin } from './parser/default/defaultPlugin'
+import { loadDefaultCodec } from './parser/default/loadDefaultCodec'
+import { Schema } from './schema'
+import { TypeOf } from './type'
+import { Violation } from './violation'
+
+export interface ResultSuccess<T> {
+  success: true
+  value: T
+}
+
+export interface ResultFailed {
+  success: false
+  violations: Violation[]
+}
+
+export type Result<T> = ResultSuccess<T> | ResultFailed
 
 export class Parser {
   private readonly codecMap: Map<string, Codec> = new Map()

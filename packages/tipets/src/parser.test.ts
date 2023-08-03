@@ -1,7 +1,7 @@
-import { array, string } from '../schema'
-import { Parser } from './Parser'
-import { ArrayCodecLoader } from './array/ArrayCodecLoader'
-import { StringCodec } from './string/StringCodec'
+import { Parser } from './parser'
+import { ArrayCodecLoader } from './parser/array/ArrayCodecLoader'
+import { StringCodec } from './parser/string/StringCodec'
+import { array, string } from './schema'
 
 describe('Parser', () => {
   it('Empty parser should parse if same type as schema or throw', () => {
