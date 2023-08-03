@@ -1,7 +1,7 @@
+import { UnsupportedTypeError } from '../../error'
 import { TupleType } from '../../type-alias'
 import { Codec } from '../Codec'
 import { CodecMap } from '../CodecMap'
-import { UnsupportedTypeError } from '../UnsupportedTypeError'
 
 export class TupleCodec<T extends TupleType> implements Codec<T> {
   private readonly codecs: CodecMap<T>

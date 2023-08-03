@@ -1,6 +1,6 @@
+import { UnsupportedTypeError } from '../../error'
 import { Schema } from '../../schema'
 import { Codec } from '../Codec'
-import { UnsupportedTypeError } from '../UnsupportedTypeError'
 
 /**
  * Fallback codec. If codec is not found for particular schema, use its own

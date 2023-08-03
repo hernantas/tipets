@@ -1,6 +1,6 @@
+import { UnsupportedValueError } from '../../error'
 import { LiteralType } from '../../type-alias'
 import { Codec } from '../Codec'
-import { UnsupportedValueError } from '../UnsupportedValueError'
 
 export class LiteralCodec<T extends LiteralType> implements Codec<T> {
   public constructor(private readonly value: T) {}

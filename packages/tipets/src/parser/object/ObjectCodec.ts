@@ -1,7 +1,7 @@
+import { UnsupportedTypeError } from '../../error'
 import { ObjectType } from '../../type-alias'
 import { Codec } from '../Codec'
 import { CodecMap } from '../CodecMap'
-import { UnsupportedTypeError } from '../UnsupportedTypeError'
 
 export class ObjectCodec<T extends ObjectType> implements Codec<T> {
   public constructor(private readonly codecs: CodecMap<T>) {}

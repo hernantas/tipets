@@ -1,3 +1,4 @@
+import { UnsupportedTypeError, UnsupportedValueError } from '../error'
 import { Schema } from '../schema'
 import { TypeOf } from '../type'
 import { Codec } from './Codec'
@@ -5,8 +6,6 @@ import { CodecLoader } from './CodecLoader'
 import { LoadCodecFn } from './LoadCodecFn'
 import { ParserPluginFn } from './ParserPluginFn'
 import { Result } from './Result'
-import { UnsupportedTypeError } from './UnsupportedTypeError'
-import { UnsupportedValueError } from './UnsupportedValueError'
 import { defaultPlugin } from './default/defaultPlugin'
 import { loadDefaultCodec } from './default/loadDefaultCodec'
 

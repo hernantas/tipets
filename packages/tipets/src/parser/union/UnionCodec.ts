@@ -1,7 +1,7 @@
+import { UnsupportedTypeError } from '../../error'
 import { MemberType } from '../../type-alias'
 import { UnionMap } from '../../type-helper'
 import { Codec } from '../Codec'
-import { UnsupportedTypeError } from '../UnsupportedTypeError'
 import { UnionCodecInfoMap } from './UnionCodecInfoMap'
 
 export class UnionCodec<T extends MemberType> implements Codec<UnionMap<T>> {

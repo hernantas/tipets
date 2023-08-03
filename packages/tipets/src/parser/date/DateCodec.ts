@@ -1,6 +1,5 @@
+import { UnsupportedTypeError, UnsupportedValueError } from '../../error'
 import { Codec } from '../Codec'
-import { UnsupportedTypeError } from '../UnsupportedTypeError'
-import { UnsupportedValueError } from '../UnsupportedValueError'
 
 export class DateCodec implements Codec<Date> {
   public decode(value: unknown): Date {
