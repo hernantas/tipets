@@ -83,6 +83,10 @@ describe('Schema', () => {
     expectType<Schema>(_undefined())
     expectType<Schema>(union(string(), number()))
     expectType<Schema>(unknown())
+    expectType<Schema>(unknown().array())
+    expectType<Schema>(unknown().nullable())
+    expectType<Schema>(unknown().optional())
+    expectType<Schema>(unknown().nullish())
   })
 
   describe('Any Schema', () => {

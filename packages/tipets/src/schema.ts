@@ -93,6 +93,22 @@ export abstract class Schema<T = any, D extends Definition = Definition>
   public check(rule: ValidationRule<T>): this {
     return this.set('rules', this.rules.concat(rule as ValidationRule))
   }
+
+  public array(): ArraySchema<this> {
+    return array(this)
+  }
+
+  public optional(): OptionalSchema<this> {
+    return optional(this)
+  }
+
+  public nullable(): NullableSchema<this> {
+    return nullable(this)
+  }
+
+  public nullish(): OptionalSchema<NullableSchema<this>> {
+    return optional(nullable(this))
+  }
 }
 
 export type MemberSchemaType = MemberType<Schema>
