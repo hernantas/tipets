@@ -1,4 +1,4 @@
-import { Violation } from './Violation'
+import { Violation } from '../violation'
 import { ValidationFunction } from './ValidationFunction'
 
 /** Rule of validation */

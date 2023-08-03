@@ -1,4 +1,4 @@
-import { Violation } from '../schema/Violation'
+import { Violation } from '../violation'
 
 /**
  * This error indicate parse is failed because value is not supported or

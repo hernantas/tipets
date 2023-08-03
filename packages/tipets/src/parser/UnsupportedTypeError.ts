@@ -1,4 +1,4 @@
-import { Violation } from '../schema/Violation'
+import { Violation } from '../violation'
 
 /** This error indicate parse is failed because input value type is not supported */
 export class UnsupportedTypeError extends Error {
