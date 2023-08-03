@@ -1,4 +1,4 @@
-import { ObjectType, ConstructorType } from './type-alias'
+import { ConstructorType, ObjectType } from './type-alias'
 
 /** @internal */
 export const definitionSymbol = Symbol.for('definition')
