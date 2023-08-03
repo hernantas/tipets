@@ -1,7 +1,7 @@
 {
   "name": "@tipets/bigdecimal",
   "description": "Extension tipets support for bigdecimal.js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
