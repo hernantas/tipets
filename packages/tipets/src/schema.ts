@@ -13,12 +13,12 @@ import {
 import { IntersectMap, Merge, UnionMap } from './type-helper'
 
 /** Schema definition */
-export interface Definition<T> {
+export interface Definition {
   /** Signature for current definition */
   readonly signature: Signature
 
   /** List of rules for current schema */
-  readonly rules?: ValidationRule<T>[]
+  readonly rules?: ValidationRule[]
 
   readonly [key: Key]: unknown
 }
@@ -26,7 +26,7 @@ export interface Definition<T> {
 export const kindSymbol = Symbol.for('kind')
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>
+export abstract class Schema<T = any, D extends Definition = Definition>
   extends ImmutableBuilder<D>
   implements Type<T>
 {
@@ -55,7 +55,7 @@ export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>
   }
 
   /** Get current validation rules */
-  public get rules(): ValidationRule<T>[] {
+  public get rules(): ValidationRule[] {
     return this.get('rules') ?? []
   }
 
@@ -91,7 +91,7 @@ export abstract class Schema<T = any, D extends Definition<T> = Definition<T>>
    * @returns A new instance with new rule added
    */
   public check(rule: ValidationRule<T>): this {
-    return this.set('rules', this.rules.concat(rule))
+    return this.set('rules', this.rules.concat(rule as ValidationRule))
   }
 }
 
@@ -154,8 +154,7 @@ export function any(): AnySchema {
   return AnySchema.create()
 }
 
-export interface ArrayDefinition<S extends Schema>
-  extends Definition<TypeOf<S>[]> {
+export interface ArrayDefinition<S extends Schema> extends Definition {
   /** Inner type schema */
   readonly type: S
 }
@@ -473,7 +472,7 @@ export function date(): DateSchema {
 }
 
 export interface IntersectDefinition<T extends MemberSchemaType>
-  extends Definition<IntersectMap<TypeMapOf<T>>> {
+  extends Definition {
   readonly items: T
 }
 
@@ -552,8 +551,7 @@ export function intersect<T extends MemberSchemaType>(
   return IntersectSchema.create(...items)
 }
 
-export interface LiteralDefinition<T extends LiteralType>
-  extends Definition<T> {
+export interface LiteralDefinition<T extends LiteralType> extends Definition {
   /** Literal value */
   readonly value: T
 }
@@ -671,8 +669,7 @@ export function _null(): NullSchema {
   return NullSchema.create()
 }
 
-export interface NullableDefinition<T extends Schema>
-  extends Definition<TypeOf<T> | null> {
+export interface NullableDefinition<T extends Schema> extends Definition {
   readonly type: T
 }
 
@@ -906,7 +903,7 @@ export type OptionalSchemaMap<T extends ObjectSchemaType> = {
 }
 
 export interface ObjectDefinition<T extends ObjectSchemaType>
-  extends Definition<TypeMapOf<T>> {
+  extends Definition {
   readonly properties: T
 }
 
@@ -1051,8 +1048,7 @@ export function object<T extends ObjectSchemaType>(
   return ObjectSchema.create(properties)
 }
 
-export interface OptionalDefinition<T extends Schema>
-  extends Definition<TypeOf<T> | undefined> {
+export interface OptionalDefinition<T extends Schema> extends Definition {
   readonly type: T
 }
 
@@ -1386,8 +1382,7 @@ export function string(): StringSchema {
   return StringSchema.create()
 }
 
-export interface TupleDefinition<T extends TupleSchemaType>
-  extends Definition<TypeMapOf<T>> {
+export interface TupleDefinition<T extends TupleSchemaType> extends Definition {
   readonly items: T
 }
 
@@ -1468,7 +1463,7 @@ export function tuple<T extends TupleSchemaType>(...items: T): TupleSchema<T> {
 }
 
 export interface UnionDefinition<T extends MemberSchemaType>
-  extends Definition<UnionMap<TypeMapOf<T>>> {
+  extends Definition {
   readonly items: T
 }
 

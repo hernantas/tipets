@@ -55,6 +55,36 @@ describe('Schema', () => {
     expect(Schema.is(false)).toBe(false)
   })
 
+  it('Type compatibility', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    function expectType<T>(_: T): void {}
+
+    expectType<Schema>(any())
+    expectType<Schema>(any())
+    expectType<Schema>(array(unknown()))
+    expectType<Schema>(boolean())
+    expectType<Schema>(date())
+    expectType<Schema>(intersect(string(), number()))
+    expectType<Schema>(literal('a'))
+    expectType<Schema>(_null())
+    expectType<Schema>(nullable(unknown()))
+    expectType<Schema>(number())
+    expectType<Schema>(object({}))
+    expectType<Schema>(
+      object({
+        name: string(),
+        age: number(),
+        active: boolean(),
+      })
+    )
+    expectType<Schema>(optional(unknown()))
+    expectType<Schema>(string())
+    expectType<Schema>(tuple(unknown(), unknown()))
+    expectType<Schema>(_undefined())
+    expectType<Schema>(union(string(), number()))
+    expectType<Schema>(unknown())
+  })
+
   describe('Any Schema', () => {
     const schema = any()
 
