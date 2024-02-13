@@ -28,11 +28,6 @@ export abstract class Schema<T = any, D extends Definition = Definition>
   extends ImmutableBuilder<D>
   implements Type<T>
 {
-  public readonly [typeSymbol]!: T
-
-  /** Symbol to determine schema kind unique to its schema type */
-  public abstract readonly kind: string
-
   /**
    * Check if given schema is instance of {@link Schema}
    *
@@ -42,6 +37,11 @@ export abstract class Schema<T = any, D extends Definition = Definition>
   public static is(value: unknown): value is Schema {
     return value instanceof Schema
   }
+
+  public readonly [typeSymbol]!: T
+
+  /** Symbol to determine schema kind unique to its schema type */
+  public abstract readonly kind: string
 
   protected constructor(definition: D) {
     super(definition)
@@ -128,18 +128,6 @@ export class AnySchema extends Schema<any> {
     signature: AnySchema.signature(),
   })
 
-  public override readonly kind: string = AnySchema.kind
-
-  /**
-   * Check if given schema is instance of {@link AnySchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link AnySchema}, false otherwise
-   */
-  public static override is(schema: Schema): schema is AnySchema {
-    return schema.kind === AnySchema.kind
-  }
-
   /**
    * Create new signature for {@link AnySchema}
    *
@@ -157,6 +145,18 @@ export class AnySchema extends Schema<any> {
   public static create(): AnySchema {
     return AnySchema.instance
   }
+
+  /**
+   * Check if given schema is instance of {@link AnySchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link AnySchema}, false otherwise
+   */
+  public static override is(schema: Schema): schema is AnySchema {
+    return schema.kind === AnySchema.kind
+  }
+
+  public override readonly kind: string = AnySchema.kind
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public override is(_value: unknown): _value is any {
@@ -179,18 +179,6 @@ export class ArraySchema<S extends Schema> extends Schema<
 > {
   public static readonly kind: string = 'array'
 
-  public override readonly kind: string = ArraySchema.kind
-
-  /**
-   * Check if given schema is instance of {@link ArraySchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link ArraySchema}, false otherwise
-   */
-  public static override is(schema: Schema): schema is ArraySchema<Schema> {
-    return schema.kind === ArraySchema.kind
-  }
-
   /**
    * Create new signature for {@link ArraySchema}
    *
@@ -209,6 +197,18 @@ export class ArraySchema<S extends Schema> extends Schema<
   public static create<S extends Schema>(type: S): ArraySchema<S> {
     return new ArraySchema({ signature: ArraySchema.signature(type), type })
   }
+
+  /**
+   * Check if given schema is instance of {@link ArraySchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link ArraySchema}, false otherwise
+   */
+  public static override is(schema: Schema): schema is ArraySchema<Schema> {
+    return schema.kind === ArraySchema.kind
+  }
+
+  public override readonly kind: string = ArraySchema.kind
 
   /** Get inner schema type */
   public get innerType(): S {
@@ -311,19 +311,6 @@ export class BooleanSchema extends Schema<boolean> {
     signature: BooleanSchema.signature(),
   })
 
-  public override readonly kind: string = BooleanSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link BooleanSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link BooleanSchema}, false
-   *   otherwise
-   */
-  public static override is(schema: Schema): schema is BooleanSchema {
-    return schema.kind === BooleanSchema.kind
-  }
-
   /**
    * Create new signature for {@link BooleanSchema}
    *
@@ -341,6 +328,19 @@ export class BooleanSchema extends Schema<boolean> {
   public static create(): BooleanSchema {
     return BooleanSchema.instance
   }
+
+  /**
+   * Check if given schema is instance of {@link BooleanSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link BooleanSchema}, false
+   *   otherwise
+   */
+  public static override is(schema: Schema): schema is BooleanSchema {
+    return schema.kind === BooleanSchema.kind
+  }
+
+  public override readonly kind: string = BooleanSchema.kind
 
   public override is(value: unknown): value is boolean {
     return typeof value === 'boolean'
@@ -363,18 +363,6 @@ export class DateSchema extends Schema<Date> {
     signature: DateSchema.signature(),
   })
 
-  public override readonly kind: string = DateSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link DateSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link DateSchema}, false otherwise
-   */
-  public static override is(schema: Schema): schema is DateSchema {
-    return schema.kind === DateSchema.kind
-  }
-
   /**
    * Create new signature for {@link DateSchema}
    *
@@ -392,6 +380,18 @@ export class DateSchema extends Schema<Date> {
   public static create(): DateSchema {
     return DateSchema.instance
   }
+
+  /**
+   * Check if given schema is instance of {@link DateSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link DateSchema}, false otherwise
+   */
+  public static override is(schema: Schema): schema is DateSchema {
+    return schema.kind === DateSchema.kind
+  }
+
+  public override readonly kind: string = DateSchema.kind
 
   public override is(value: unknown): value is Date {
     return value instanceof Date
@@ -496,21 +496,6 @@ export class IntersectSchema<T extends MemberSchemaType> extends Schema<
 > {
   public static readonly kind: string = 'intersect'
 
-  public override readonly kind: string = IntersectSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link IntersectSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link IntersectSchema}, false
-   *   otherwise
-   */
-  public static override is(
-    schema: Schema
-  ): schema is IntersectSchema<MemberSchemaType> {
-    return schema.kind === IntersectSchema.kind
-  }
-
   /**
    * Create new signature for {@link IntersectSchema}
    *
@@ -534,6 +519,21 @@ export class IntersectSchema<T extends MemberSchemaType> extends Schema<
       items,
     })
   }
+
+  /**
+   * Check if given schema is instance of {@link IntersectSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link IntersectSchema}, false
+   *   otherwise
+   */
+  public static override is(
+    schema: Schema
+  ): schema is IntersectSchema<MemberSchemaType> {
+    return schema.kind === IntersectSchema.kind
+  }
+
+  public override readonly kind: string = IntersectSchema.kind
 
   public get items(): T {
     return this.get('items')
@@ -576,21 +576,6 @@ export class LiteralSchema<T extends LiteralType> extends Schema<
 > {
   public static readonly kind: string = 'literal'
 
-  public override readonly kind: string = LiteralSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link LiteralSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link LiteralSchema}, false
-   *   otherwise
-   */
-  public static override is(
-    schema: Schema
-  ): schema is LiteralSchema<LiteralType> {
-    return schema.kind === LiteralSchema.kind
-  }
-
   /**
    * Create new signature for {@link LiteralSchema}
    *
@@ -612,6 +597,21 @@ export class LiteralSchema<T extends LiteralType> extends Schema<
       value,
     })
   }
+
+  /**
+   * Check if given schema is instance of {@link LiteralSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link LiteralSchema}, false
+   *   otherwise
+   */
+  public static override is(
+    schema: Schema
+  ): schema is LiteralSchema<LiteralType> {
+    return schema.kind === LiteralSchema.kind
+  }
+
+  public override readonly kind: string = LiteralSchema.kind
 
   public get value(): T {
     return this.get('value')
@@ -639,18 +639,6 @@ export class NullSchema extends Schema<undefined> {
     signature: NullSchema.signature(),
   })
 
-  public override readonly kind: string = NullSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link NullSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link NullSchema}, false otherwise
-   */
-  public static override is(schema: Schema): schema is NullSchema {
-    return schema.kind === NullSchema.kind
-  }
-
   /**
    * Create new signature for {@link NullSchema}
    *
@@ -668,6 +656,18 @@ export class NullSchema extends Schema<undefined> {
   public static create(): NullSchema {
     return NullSchema.instance
   }
+
+  /**
+   * Check if given schema is instance of {@link NullSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link NullSchema}, false otherwise
+   */
+  public static override is(schema: Schema): schema is NullSchema {
+    return schema.kind === NullSchema.kind
+  }
+
+  public override readonly kind: string = NullSchema.kind
 
   public override is(value: unknown): value is undefined {
     return value === null
@@ -688,19 +688,6 @@ export class NullableSchema<T extends Schema> extends Schema<
   InnerDefinition<T>
 > {
   public static readonly kind: string = 'nullable'
-
-  public override readonly kind: string = NullableSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link NullableSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link NullableSchema}, false
-   *   otherwise
-   */
-  public static override is(schema: Schema): schema is NullableSchema<Schema> {
-    return schema.kind === NullableSchema.kind
-  }
 
   /**
    * Create new signature for {@link NullableSchema}
@@ -723,6 +710,19 @@ export class NullableSchema<T extends Schema> extends Schema<
       type,
     })
   }
+
+  /**
+   * Check if given schema is instance of {@link NullableSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link NullableSchema}, false
+   *   otherwise
+   */
+  public static override is(schema: Schema): schema is NullableSchema<Schema> {
+    return schema.kind === NullableSchema.kind
+  }
+
+  public override readonly kind: string = NullableSchema.kind
 
   public get innerType(): T {
     return this.get('type')
@@ -758,18 +758,6 @@ export class NumberSchema extends Schema<number> {
     signature: NumberSchema.signature(),
   })
 
-  public override readonly kind: string = NumberSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link NumberSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link NumberSchema}, false otherwise
-   */
-  public static override is(schema: Schema): schema is NumberSchema {
-    return schema.kind === NumberSchema.kind
-  }
-
   /**
    * Create new signature for {@link NumberSchema}
    *
@@ -787,6 +775,18 @@ export class NumberSchema extends Schema<number> {
   public static create(): NumberSchema {
     return NumberSchema.instance
   }
+
+  /**
+   * Check if given schema is instance of {@link NumberSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link NumberSchema}, false otherwise
+   */
+  public static override is(schema: Schema): schema is NumberSchema {
+    return schema.kind === NumberSchema.kind
+  }
+
+  public override readonly kind: string = NumberSchema.kind
 
   public override is(value: unknown): value is number {
     return typeof value === 'number'
@@ -925,20 +925,6 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
 > {
   public static readonly kind: string = 'object'
 
-  public override readonly kind: string = ObjectSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link ObjectSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link ObjectSchema}, false otherwise
-   */
-  public static override is(
-    schema: Schema
-  ): schema is ObjectSchema<ObjectSchemaType> {
-    return schema.kind === ObjectSchema.kind
-  }
-
   /**
    * Create new signature for {@link ObjectSchema}
    *
@@ -965,6 +951,20 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
       properties,
     })
   }
+
+  /**
+   * Check if given schema is instance of {@link ObjectSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link ObjectSchema}, false otherwise
+   */
+  public static override is(
+    schema: Schema
+  ): schema is ObjectSchema<ObjectSchemaType> {
+    return schema.kind === ObjectSchema.kind
+  }
+
+  public override readonly kind: string = ObjectSchema.kind
 
   /** Get list of keys of schema */
   public get keys(): string[] {
@@ -1066,19 +1066,6 @@ export class OptionalSchema<T extends Schema> extends Schema<
 > {
   public static readonly kind: string = 'optional'
 
-  public override readonly kind: string = OptionalSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link OptionalSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link OptionalSchema}, false
-   *   otherwise
-   */
-  public static override is(schema: Schema): schema is OptionalSchema<Schema> {
-    return schema.kind === OptionalSchema.kind
-  }
-
   /**
    * Create new signature for {@link OptionalSchema}
    *
@@ -1100,6 +1087,19 @@ export class OptionalSchema<T extends Schema> extends Schema<
       type,
     })
   }
+
+  /**
+   * Check if given schema is instance of {@link OptionalSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link OptionalSchema}, false
+   *   otherwise
+   */
+  public static override is(schema: Schema): schema is OptionalSchema<Schema> {
+    return schema.kind === OptionalSchema.kind
+  }
+
+  public override readonly kind: string = OptionalSchema.kind
 
   public get innerType(): T {
     return this.get('type')
@@ -1146,18 +1146,6 @@ export class StringSchema extends Schema<string> {
     signature: StringSchema.signature(),
   })
 
-  public override readonly kind: string = StringSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link StringSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link StringSchema}, false otherwise
-   */
-  public static override is(schema: Schema): schema is StringSchema {
-    return schema.kind === StringSchema.kind
-  }
-
   /**
    * Create new signature for {@link StringSchema}
    *
@@ -1175,6 +1163,18 @@ export class StringSchema extends Schema<string> {
   public static create(): StringSchema {
     return StringSchema.instance
   }
+
+  /**
+   * Check if given schema is instance of {@link StringSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link StringSchema}, false otherwise
+   */
+  public static override is(schema: Schema): schema is StringSchema {
+    return schema.kind === StringSchema.kind
+  }
+
+  public override readonly kind: string = StringSchema.kind
 
   public override is(value: unknown): value is string {
     return typeof value === 'string'
@@ -1402,20 +1402,6 @@ export class TupleSchema<T extends TupleSchemaType> extends Schema<
 > {
   public static readonly kind: string = 'tuple'
 
-  public override readonly kind: string = TupleSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link TupleSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link TupleSchema}, false otherwise
-   */
-  public static override is(
-    schema: Schema
-  ): schema is TupleSchema<TupleSchemaType> {
-    return schema.kind === TupleSchema.kind
-  }
-
   /**
    * Create new signature for {@link TupleSchema}
    *
@@ -1434,6 +1420,20 @@ export class TupleSchema<T extends TupleSchemaType> extends Schema<
   public static create<T extends TupleSchemaType>(...items: T): TupleSchema<T> {
     return new TupleSchema({ signature: TupleSchema.signature(items), items })
   }
+
+  /**
+   * Check if given schema is instance of {@link TupleSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link TupleSchema}, false otherwise
+   */
+  public static override is(
+    schema: Schema
+  ): schema is TupleSchema<TupleSchemaType> {
+    return schema.kind === TupleSchema.kind
+  }
+
+  public override readonly kind: string = TupleSchema.kind
 
   public get items(): T {
     return this.get('items')
@@ -1483,20 +1483,6 @@ export class UnionSchema<T extends MemberSchemaType> extends Schema<
 > {
   public static readonly kind: string = 'union'
 
-  public override readonly kind: string = UnionSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link UnionSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link UnionSchema}, false otherwise
-   */
-  public static override is(
-    schema: Schema
-  ): schema is UnionSchema<MemberSchemaType> {
-    return schema.kind === UnionSchema.kind
-  }
-
   /**
    * Create new signature for {@link UnionSchema}
    *
@@ -1517,6 +1503,20 @@ export class UnionSchema<T extends MemberSchemaType> extends Schema<
   ): UnionSchema<T> {
     return new UnionSchema({ signature: UnionSchema.signature(items), items })
   }
+
+  /**
+   * Check if given schema is instance of {@link UnionSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link UnionSchema}, false otherwise
+   */
+  public static override is(
+    schema: Schema
+  ): schema is UnionSchema<MemberSchemaType> {
+    return schema.kind === UnionSchema.kind
+  }
+
+  public override readonly kind: string = UnionSchema.kind
 
   public get items(): T {
     return this.get('items')
@@ -1557,19 +1557,6 @@ export class UndefinedSchema extends Schema<undefined> {
     signature: UndefinedSchema.signature(),
   })
 
-  public override readonly kind: string = UndefinedSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link UndefinedSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link UndefinedSchema}, false
-   *   otherwise
-   */
-  public static override is(schema: Schema): schema is UndefinedSchema {
-    return schema.kind === UndefinedSchema.kind
-  }
-
   /**
    * Create new signature for {@link UndefinedSchema}
    *
@@ -1587,6 +1574,19 @@ export class UndefinedSchema extends Schema<undefined> {
   public static create(): UndefinedSchema {
     return UndefinedSchema.instance
   }
+
+  /**
+   * Check if given schema is instance of {@link UndefinedSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link UndefinedSchema}, false
+   *   otherwise
+   */
+  public static override is(schema: Schema): schema is UndefinedSchema {
+    return schema.kind === UndefinedSchema.kind
+  }
+
+  public override readonly kind: string = UndefinedSchema.kind
 
   public override is(value: unknown): value is undefined {
     return value === undefined
@@ -1609,19 +1609,6 @@ export class UnknownSchema extends Schema<unknown> {
     signature: UnknownSchema.signature(),
   })
 
-  public override readonly kind: string = UnknownSchema.kind
-
-  /**
-   * Check if given schema is instance of {@link UnknownSchema}
-   *
-   * @param schema Schema to be checked
-   * @returns True if schema is instance of {@link UnknownSchema}, false
-   *   otherwise
-   */
-  public static override is(schema: Schema): schema is UnknownSchema {
-    return schema.kind === UnknownSchema.kind
-  }
-
   /**
    * Create new signature for {@link UnknownSchema}
    *
@@ -1639,6 +1626,19 @@ export class UnknownSchema extends Schema<unknown> {
   public static create(): UnknownSchema {
     return UnknownSchema.instance
   }
+
+  /**
+   * Check if given schema is instance of {@link UnknownSchema}
+   *
+   * @param schema Schema to be checked
+   * @returns True if schema is instance of {@link UnknownSchema}, false
+   *   otherwise
+   */
+  public static override is(schema: Schema): schema is UnknownSchema {
+    return schema.kind === UnknownSchema.kind
+  }
+
+  public override readonly kind: string = UnknownSchema.kind
 
   public override is(_value: unknown): _value is unknown {
     return true
