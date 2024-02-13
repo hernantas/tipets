@@ -3,10 +3,17 @@ import { Schema } from './schema'
 import { LiteralType, MemberType, ObjectType, TupleType } from './type-alias'
 import { IntersectMap, UnionMap } from './type-helper'
 
-export interface Codec<T = unknown, O = unknown, I = unknown> {
-  decode(value: I): T
+export interface Decoder<T = unknown, I = unknown> {
+  decode(input: I): T
+}
+
+export interface Encoder<T = unknown, O = unknown> {
   encode(value: T): O
 }
+
+export interface Codec<T = unknown, O = unknown, I = unknown>
+  extends Decoder<T, I>,
+    Encoder<T, O> {}
 
 /** Warp given types with {@link Codec} */
 export type CodecMap<T> = {
