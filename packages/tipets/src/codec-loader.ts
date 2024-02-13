@@ -46,7 +46,7 @@ export class ArrayCodecLoader implements CodecLoader<ArraySchema<Schema>> {
     schema: ArraySchema<Schema>,
     load: LoadCodecFn
   ): Codec<TypeOf<ArraySchema<Schema>>> {
-    return new ArrayCodec(load(schema.type))
+    return new ArrayCodec(load(schema.innerType))
   }
 }
 
@@ -90,7 +90,7 @@ export class NullableCodecLoader
     schema: NullableSchema<Schema>,
     load: LoadCodecFn
   ): Codec<TypeOf<NullableSchema<Schema>>> {
-    return new NullableCodec(load(schema.type))
+    return new NullableCodec(load(schema.innerType))
   }
 }
 
@@ -127,7 +127,7 @@ export class OptionalCodecLoader
     schema: OptionalSchema<Schema>,
     load: LoadCodecFn
   ): Codec<TypeOf<OptionalSchema<Schema>>> {
-    return new OptionalCodec(load(schema.type))
+    return new OptionalCodec(load(schema.innerType))
   }
 }
 

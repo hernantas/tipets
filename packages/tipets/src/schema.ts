@@ -109,6 +109,11 @@ export abstract class Schema<T = any, D extends Definition = Definition>
   }
 }
 
+export interface InnerDefinition<S extends Schema> extends Definition {
+  /** Inner type schema */
+  readonly type: S
+}
+
 export type MemberSchemaType = MemberType<Schema>
 
 export type ObjectSchemaType = ObjectType<Schema>
@@ -168,14 +173,9 @@ export function any(): AnySchema {
   return AnySchema.create()
 }
 
-export interface ArrayDefinition<S extends Schema> extends Definition {
-  /** Inner type schema */
-  readonly type: S
-}
-
 export class ArraySchema<S extends Schema> extends Schema<
   TypeOf<S>[],
-  ArrayDefinition<S>
+  InnerDefinition<S>
 > {
   public static readonly kind: string = 'array'
 
@@ -211,7 +211,7 @@ export class ArraySchema<S extends Schema> extends Schema<
   }
 
   /** Get inner schema type */
-  public get type(): S {
+  public get innerType(): S {
     return this.get('type')
   }
 
@@ -219,7 +219,7 @@ export class ArraySchema<S extends Schema> extends Schema<
     return (
       Array.isArray(value) &&
       value.reduce<boolean>(
-        (result, value) => (result ? this.type.is(value) : false),
+        (result, value) => (result ? this.innerType.is(value) : false),
         true
       )
     )
@@ -228,7 +228,7 @@ export class ArraySchema<S extends Schema> extends Schema<
   public override validate(value: TypeOf<S>[]): Violation[] {
     return super.validate(value).concat(
       value.flatMap((value, index) =>
-        this.type.validate(value).map((error) => ({
+        this.innerType.validate(value).map((error) => ({
           ...error,
           path: [index, ...(error.path ?? [])],
         }))
@@ -683,13 +683,9 @@ export function _null(): NullSchema {
   return NullSchema.create()
 }
 
-export interface NullableDefinition<T extends Schema> extends Definition {
-  readonly type: T
-}
-
 export class NullableSchema<T extends Schema> extends Schema<
   TypeOf<T> | null,
-  NullableDefinition<T>
+  InnerDefinition<T>
 > {
   public static readonly kind: string = 'nullable'
 
@@ -728,18 +724,20 @@ export class NullableSchema<T extends Schema> extends Schema<
     })
   }
 
-  public get type(): T {
+  public get innerType(): T {
     return this.get('type')
   }
 
   public override is(value: unknown): value is TypeOf<T> | null {
-    return value === null || this.type.is(value)
+    return value === null || this.innerType.is(value)
   }
 
   public override validate(value: TypeOf<T> | null): Violation[] {
     return super
       .validate(value)
-      .concat(...(this.type.is(value) ? this.type.validate(value) : []))
+      .concat(
+        ...(this.innerType.is(value) ? this.innerType.validate(value) : [])
+      )
   }
 }
 
@@ -1062,13 +1060,9 @@ export function object<T extends ObjectSchemaType>(
   return ObjectSchema.create(properties)
 }
 
-export interface OptionalDefinition<T extends Schema> extends Definition {
-  readonly type: T
-}
-
 export class OptionalSchema<T extends Schema> extends Schema<
   TypeOf<T> | undefined,
-  OptionalDefinition<T>
+  InnerDefinition<T>
 > {
   public static readonly kind: string = 'optional'
 
@@ -1107,18 +1101,20 @@ export class OptionalSchema<T extends Schema> extends Schema<
     })
   }
 
-  public get type(): T {
+  public get innerType(): T {
     return this.get('type')
   }
 
   public override is(value: unknown): value is TypeOf<T> | undefined {
-    return value === undefined || this.type.is(value)
+    return value === undefined || this.innerType.is(value)
   }
 
   public override validate(value: TypeOf<T> | undefined): Violation[] {
     return super
       .validate(value)
-      .concat(...(this.type.is(value) ? this.type.validate(value) : []))
+      .concat(
+        ...(this.innerType.is(value) ? this.innerType.validate(value) : [])
+      )
   }
 }
 
