@@ -8,7 +8,7 @@ import {
   ObjectType,
   TupleType,
 } from './type-alias'
-import { IntersectMap, Merge, UnionMap } from './type-helper'
+import { IntersectMap, Merge, ShapeType, UnionMap } from './type-helper'
 import { ValidationRule } from './validation'
 import { Violation } from './violation'
 
@@ -919,9 +919,9 @@ export interface ObjectDefinition<T extends ObjectSchemaType>
   readonly properties: T
 }
 
-export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
-  TypeMapOf<T>,
-  ObjectDefinition<T>
+export class ObjectSchema<S extends ObjectSchemaType> extends Schema<
+  ShapeType<TypeMapOf<S>>,
+  ObjectDefinition<S>
 > {
   public static readonly kind: string = 'object'
 
@@ -972,34 +972,34 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
   }
 
   /** Get properties of schema */
-  public get properties(): T {
+  public get properties(): S {
     return this.get('properties')
   }
 
   /** Get properties of schema */
-  public get props(): T {
+  public get props(): S {
     return this.get('properties')
   }
 
-  public override is(value: unknown): value is TypeMapOf<T> {
+  public override is(value: unknown): value is ShapeType<TypeMapOf<S>> {
     return (
       typeof value === 'object' &&
       value !== null &&
       Object.entries(this.properties).reduce(
         (result, [key, schema]) =>
-          result && schema.is((value as TypeMapOf<T>)[key]),
+          result && schema.is((value as TypeMapOf<S>)[key]),
         true
       )
     )
   }
 
-  public override validate(value: TypeMapOf<T>): Violation[] {
+  public override validate(value: ShapeType<TypeMapOf<S>>): Violation[] {
     return super
       .validate(value)
       .concat(
         Object.entries(this.properties).flatMap(([key, schema]) =>
           schema
-            .validate(value[key])
+            .validate(value[key as keyof ShapeType<TypeMapOf<S>>])
             .map((error) => ({ ...error, path: [key, ...(error.path ?? [])] }))
         )
       )
@@ -1007,43 +1007,43 @@ export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
 
   public extend<U extends ObjectSchemaType>(
     extension: U
-  ): ObjectSchema<Merge<T, U>> {
+  ): ObjectSchema<Merge<S, U>> {
     return ObjectSchema.create(
       Object.fromEntries([
         ...Object.entries(this.properties),
         ...Object.entries(extension),
-      ]) as Merge<T, U>
+      ]) as Merge<S, U>
     )
   }
 
-  public partial(): ObjectSchema<OptionalSchemaMap<T>> {
+  public partial(): ObjectSchema<OptionalSchemaMap<S>> {
     return ObjectSchema.create(
       Object.fromEntries(
         Object.entries(this.properties).map(([key, schema]) => [
           key,
           optional(schema),
         ])
-      ) as unknown as OptionalSchemaMap<T>
+      ) as unknown as OptionalSchemaMap<S>
     )
   }
 
-  public pick<K extends keyof T>(...keys: K[]): ObjectSchema<Pick<T, K>> {
+  public pick<K extends keyof S>(...keys: K[]): ObjectSchema<Pick<S, K>> {
     return ObjectSchema.create(
       Object.fromEntries(
         Object.entries(this.properties)
           .filter(([key]) => keys.includes(key as K))
           .map(([key, schema]) => [key, schema])
-      ) as Pick<T, K>
+      ) as Pick<S, K>
     )
   }
 
-  public omit<K extends keyof T>(...keys: K[]): ObjectSchema<Omit<T, K>> {
+  public omit<K extends keyof S>(...keys: K[]): ObjectSchema<Omit<S, K>> {
     return ObjectSchema.create(
       Object.fromEntries(
         Object.entries(this.properties)
           .filter(([key]) => !keys.includes(key as K))
           .map(([key, schema]) => [key, schema])
-      ) as Omit<T, K>
+      ) as Omit<S, K>
     )
   }
 }

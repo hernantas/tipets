@@ -22,3 +22,24 @@ export type IntersectOf<T> = (
 
 /** Utility type to convert {@link MemberType} to intersect */
 export type IntersectMap<T extends MemberType> = IntersectOf<UnionMap<T>>
+
+/** Get key from `T` that have undefined type */
+export type OptionalKeys<T> = {
+  [K in keyof T]: undefined extends T[K] ? K : never
+}[keyof T]
+
+/** Get key from `T` that do not have undefined type */
+export type RequiredKeys<T> = {
+  [K in keyof T]: undefined extends T[K] ? never : K
+}[keyof T]
+
+type PickAndChooseOptional<T> = {
+  [K in RequiredKeys<T>]: T[K]
+} & {
+  [K in OptionalKeys<T>]?: T[K]
+}
+
+/** Utility type to convert property that have `undefined` to optional */
+export type ShapeType<T extends ObjectType> = {
+  [K in keyof PickAndChooseOptional<T>]: PickAndChooseOptional<T>[K]
+}
