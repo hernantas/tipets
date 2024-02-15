@@ -13,3 +13,5 @@ export type TypeOf<T extends Type> = T[typeof typeSymbol]
 export type TypeMapOf<T> = {
   [K in keyof T]: T[K] extends Type ? TypeOf<T[K]> : never
 }
+
+export type Infer<T extends Type> = TypeOf<T>
